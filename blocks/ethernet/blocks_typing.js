@@ -10,9 +10,9 @@ Blockly.Blocks.ethernet_begin_dhcp_client.getBlockType = function() {
 Blockly.Blocks.ethernet_mac_address.getBlockType = function() {
    return Blockly.Types.NUMBER;
 };
-Blockly.Blocks.ethernet_client_begin.getBlockType = function() {
-   return Blockly.Types.NUMBER;
-};
+//Blockly.Blocks.ethernet_client_begin.getBlockType = function() {
+  // return Blockly.Types.NUMBER;
+//};
 Blockly.Blocks.ethernet_begin_dhcp_server.getBlockType = function() {
    return Blockly.Types.NUMBER;
 };
