@@ -265,6 +265,7 @@ Blockly.Msg.CAT_AUTODUINO_COMM = " - communication";
 Blockly.Msg.CAT_AUTODUINO_UTIL = " - useful";
 
 Blockly.Msg.CAT_I2C = "I2C"; //added 26/05/2017
+Blockly.Msg.CAT_SMT = "SparkMyThought"; //added 26/05/2017
 Blockly.Msg.CAT_SPI = "SPI"; //added 26/05/2017
 Blockly.Msg.CAT_NULL = "free"; //added 8/10/2017
 
@@ -2322,3 +2323,9 @@ Blockly.Msg.Adafruit_RGB_LCD_Shield_WRITE_FORMAT_FIELDDROPDOWN = [["0x", "0x"], 
 Blockly.Msg.Adafruit_RGB_LCD_Shield_READ_button_TEXT = "READ BUTTON";
 Blockly.Msg.Adafruit_RGB_LCD_Shield_READ_button_TOOLTIP = "UP = 0x08 - DOWN = 0x04 - LEFT = 0x10 - RIGHT = 0x02 - SELECT = 0x01";
 Blockly.Msg.Adafruit_RGB_LCD_Shield_READ_button_HELPURL = "https://learn.adafruit.com/rgb-lcd-shield";
+
+Blockly.Msg.SMT_HCSR04_HELPURL = "https://www.sparkmythought.com";
+Blockly.Msg.SMT_HCSR04_1 = "distance measured in cm ";
+Blockly.Msg.SMT_HCSR04_2 = "TRIG on the PIN ";
+Blockly.Msg.SMT_HCSR04_3 = "ECHO on the PIN ";
+Blockly.Msg.SMT_HCSR04_TOOLTIP = "detect obstacle, measure distance with ultrasonic ranger";

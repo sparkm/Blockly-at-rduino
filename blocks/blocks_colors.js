@@ -74,3 +74,4 @@ Blockly.Blocks.wii.HUE = "#E60012";
 Blockly.Blocks.Zumo_auto.HUE = "#00138B";
 Blockly.Blocks.Zumo_motors.HUE = "#00138B";
 Blockly.Blocks.Zumo_sensors.HUE = "#00138B";
+Blockly.Blocks.smt.HUE = "#ffbf00";

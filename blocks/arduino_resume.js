@@ -96,6 +96,7 @@ head.load(
 "blocks/zumobot/zumo_auto.js",
 "blocks/zumobot/zumo_motors.js",
 "blocks/zumobot/zumo_sensors.js",
+"blocks/smt/smt.js",
 function() {
     // Call a function when done
     console.log("Done loading Various Blocks");

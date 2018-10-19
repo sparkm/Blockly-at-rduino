@@ -55,6 +55,7 @@ head.load(
 "blocks/tsl2561/blocks_typing.js",
 "blocks/wii/blocks_typing.js",
 "blocks/zumobot/blocks_typing.js",
+"blocks/smt/blocks_typing.js",
 function() {
     // Call a function when done
     console.log("Done loading Blocks typing");
