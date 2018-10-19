@@ -288,6 +288,7 @@ Blockly.Msg.CAT_PEGUINO_IN = " - sensors";
 Blockly.Msg.CAT_PEGUINO_OUT = " - actuators";
 
 Blockly.Msg.CAT_I2C = "I2C"; //added 26/05/2017
+Blockly.Msg.CAT_SMT = "SparkMyThought"; //added 26/05/2017
 Blockly.Msg.CAT_SPI = "SPI"; //added 26/05/2017
 Blockly.Msg.CAT_NULL = "free"; //added 8/10/2017
 
@@ -2822,3 +2823,8 @@ Blockly.Msg.GROVE_BK_INOUT_PRESSURE_TOOLTIP = 'get back value of temperature and
 Blockly.Msg.GROVE_BK_INOUT_GYRO_TEXT1 = 'acceleration';
 Blockly.Msg.GROVE_BK_INOUT_GYRO_TEXT2 = 'axis';
 Blockly.Msg.GROVE_BK_INOUT_GYRO_TOOLTIP = "get back acceleration value from sensor, in 3 dimensions";
+Blockly.Msg.SMT_HCSR04_HELPURL = "https://www.sparkmythought.com";
+Blockly.Msg.SMT_HCSR04_1 = "distance measured in cm ";
+Blockly.Msg.SMT_HCSR04_2 = "TRIG on the PIN ";
+Blockly.Msg.SMT_HCSR04_3 = "ECHO on the PIN ";
+Blockly.Msg.SMT_HCSR04_TOOLTIP = "detect obstacle, measure distance with ultrasonic ranger";
