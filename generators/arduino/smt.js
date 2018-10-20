@@ -5,7 +5,7 @@ goog.provide('Blockly.Arduino.smt');
 
 goog.require('Blockly.Arduino');
 
-
+/* Ultrasonic Sensor */
 Blockly.Arduino.smt_hcsr04 = function() {
   var dropdown_triger_pin = Blockly.Arduino.valueToCode(this, 'TRIGER', Blockly.Arduino.ORDER_ATOMIC); 
   var dropdown_dist_pin = Blockly.Arduino.valueToCode(this, 'DIST', Blockly.Arduino.ORDER_ATOMIC); 
@@ -25,6 +25,7 @@ Blockly.Arduino.smt_hcsr04 = function() {
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
+/* Servo Motor */
 Blockly.Arduino.smt_servo_attach = function() {
   var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
   var value_degree = Blockly.Arduino.valueToCode(this, 'DEGREE', Blockly.Arduino.ORDER_ATOMIC);
@@ -88,5 +89,66 @@ Blockly.Arduino.smt_servo_rot_continue_param = function() {
   if (dropdown_etat == "BACKWARD") var value_degree = 90 - parseInt(degree);
 
   var code = dropdown_name + '.write(' + value_degree + ');\n';
+  return code;
+};
+
+/* L298N Motor Driver */
+Blockly.Arduino.smt_l298n_motor_init = function() {
+  var id = this.getFieldValue('L298_NAME');
+  var PinEN = this.getFieldValue("PIN-EN");
+  var PinIN1 = this.getFieldValue("PIN-IN1");
+  var PinIN2 = this.getFieldValue("PIN-IN2");
+  var mysetup = "";
+
+  mysetup += "// pin assignation for L298N : " + id + "\n";
+  mysetup += " pinMode("+PinIN1+",OUTPUT);//IN1_" + id +" Pin\n" ;
+  mysetup += " pinMode("+PinIN2+",OUTPUT);//IN2_" + id +" Pin\n";
+  mysetup += " pinMode("+PinEN+",OUTPUT);//PWM_" + id +" Pin\n" ;
+  Blockly.Arduino.setups_["smt_setup_l298n_motor" + id] = mysetup;
+  Blockly.Arduino.definitions_["smt_setup_l298n_motor" + id] = "// pin assignation for L298N : " + id + "\n"+
+	"int l298n_" + id + "[3] = {"+PinEN+", "+PinIN1+", "+PinIN2+"};\n";
+  var code = "";
+  return code;
+};
+
+Blockly.Arduino.smt_l298n_motor = function() {
+  var dropdown_direction = this.getFieldValue('DIRECTION'); 
+  var id = this.getFieldValue('L298_NAME');
+  var speed = Blockly.Arduino.valueToCode(this, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '127';
+
+  var code = "";
+  if(dropdown_direction==="forward"){
+    Blockly.Arduino.definitions_['define_smt_l298n_forward'] = "void smt_l298n_forward(int speed,int Pins[3])\n"+
+"{\n"+
+     "  analogWrite(Pins[0],speed);//Motor speed\n"+
+     "  digitalWrite(Pins[1],HIGH);//turn DC Motor move clockwise\n"+
+     "  digitalWrite(Pins[2],LOW);//turn DC Motor move clockwise\n"+
+"}\n";
+    code="smt_l298n_forward("+speed+", l298n_" + id + ");\n";
+  } else if (dropdown_direction==="backward") {
+    Blockly.Arduino.definitions_['define_smt_l298n_backward'] = "void smt_l298n_backward(int speed,int Pins[3])\n"+
+"{\n"+
+     "  analogWrite(Pins[0],speed);//Motor speed\n"+
+     "  digitalWrite(Pins[1],LOW);//turn DC Motor move anti-clockwise\n"+
+     "  digitalWrite(Pins[2],HIGH);//turn DC Motor move anti-clockwise\n"+
+"}\n\n";
+    code="smt_l298n_backward("+speed+", l298n_" + id + ");\n";
+  } else if (dropdown_direction==="stop"){
+    Blockly.Arduino.definitions_['define_smt_l298n_stop'] = "void smt_l298n_stop(int Pins[3])\n"+
+"{\n"+
+     "  analogWrite(Pins[0],0);//Motor speed\n"+
+     "  digitalWrite(Pins[1],LOW);//turn DC Motor off\n"+
+     "  digitalWrite(Pins[2],LOW);//turn DC Motor off\n"+
+"}\n\n";
+    code="smt_l298n_stop(l298n_" + id + ");\n";
+  } else if (dropdown_direction==="brake"){
+    Blockly.Arduino.definitions_['define_smt_l298n_brake'] = "void smt_l298n_brake(int Pins[3])\n"+
+"{\n"+
+     "  analogWrite(Pins[0],255);//Motor speed\n"+
+     "  digitalWrite(Pins[1],LOW);//turn DC Motor off\n"+
+     "  digitalWrite(Pins[2],LOW);//turn DC Motor off\n"+
+"}\n\n";
+    code="smt_l298n_brake(l298n_" + id + ");\n";
+  }
   return code;
 };

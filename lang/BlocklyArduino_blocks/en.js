@@ -2356,3 +2356,17 @@ Blockly.Msg.SMT_SERVO_ATTACH1 = "attach servomotor";
 Blockly.Msg.SMT_SERVO_ATTACH2 = "id#";
 Blockly.Msg.SMT_SERVO_ATTACHED = "servo attached ?";
 Blockly.Msg.SMT_SERVO_DETACH = "detach servo on PIN#";
+
+Blockly.Msg.SMT_L298N_MOTOR_TITLE = "L298N Motor Controller";
+Blockly.Msg.SMT_L298N_MOTOR_INIT_TITLE = "L298N Motor Controller Init";
+Blockly.Msg.SMT_L298N_ID = "Identication"
+Blockly.Msg.SMT_L298N_MOTOR_SPEED = "Speed";
+Blockly.Msg.SMT_L298N_MOTOR_PIN_IN1 = "IN1 pin (direction)";
+Blockly.Msg.SMT_L298N_MOTOR_PIN_IN2 = "IN2 pin (direction)";
+Blockly.Msg.SMT_L298N_MOTOR_PIN_EN = "EN pin (pwm)";
+Blockly.Msg.SMT_L298N_STOP = "stop";
+Blockly.Msg.SMT_L298N_FORWARD = "forward";
+Blockly.Msg.SMT_L298N_BACKWARD = "backward";
+Blockly.Msg.SMT_L298N_BRAKE = "brake";
+Blockly.Msg.SMT_L298N_INIT_TOOLTIP = "L298N initialization block (1 for each motor)";
+Blockly.Msg.SMT_L298N_TOOLTIP = "L298N block, use the same id as in the initialization block";
