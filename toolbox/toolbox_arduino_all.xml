@@ -707,6 +707,21 @@
 				</value>
 			</block>
 		</category>
+		<category name="Servo Motor" colour="#ffbf00">
+			<block type="smt_servo_attach"></block>
+			<block type="smt_servo_move">
+				<value name="DEGREE">
+					<shadow type="inout_angle">
+						<field name="NUM">0</field>
+					</shadow>
+				</value>
+			</block>
+			<block type="smt_servo_read_degrees"></block>
+			<block type="smt_servo_attached"></block>
+			<block type="smt_servo_detach"></block>
+			<block type="smt_servo_rot_continue"></block>
+			<block type="smt_servo_rot_continue_param"></block>
+		</category>
 	</category>
 	<category name="CAT_I2C" colour="#CC0033">
 		<category name="SOFT_I2C" colour="#CC0033">	
