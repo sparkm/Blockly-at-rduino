@@ -2370,3 +2370,15 @@ Blockly.Msg.SMT_L298N_BACKWARD = "backward";
 Blockly.Msg.SMT_L298N_BRAKE = "brake";
 Blockly.Msg.SMT_L298N_INIT_TOOLTIP = "L298N initialization block (1 for each motor)";
 Blockly.Msg.SMT_L298N_TOOLTIP = "L298N block, use the same id as in the initialization block";
+
+Blockly.Msg.smt_ledRGB_WS2812B_init = "Led RGB WS2812B Init";
+Blockly.Msg.smt_ledRGB_WS2812B_init_Pin = "Pin =";
+Blockly.Msg.smt_ledRGB_WS2812B_init_Number_of_Pixels = "Number of pixels =";
+Blockly.Msg.smt_ledRGB_WS2812B_DEFAULT_NAME = "RGB_LED";
+Blockly.Msg.smt_ledRGB_WS2812B_Brightness = "Brightness =";
+
+Blockly.Msg.smt_ledRGB_WS2812B_setPixelColor = "Led RGB WS2812B. Send color :";
+Blockly.Msg.smt_ledRGB_WS2812B_setPixelColor_Red = "Red (255 max) =";
+Blockly.Msg.smt_ledRGB_WS2812B_setPixelColor_Green = "Green (255 max) =";
+Blockly.Msg.smt_ledRGB_WS2812B_setPixelColor_Blue = "Blue (255 max) =";
+Blockly.Msg.smt_ledRGB_WS2812B_setPixelColor_Pixel_Number = "for pixel number (0 first) =";
