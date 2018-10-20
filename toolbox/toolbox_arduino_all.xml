@@ -752,6 +752,21 @@
 			<block type="smt_servo_rot_continue"></block>
 			<block type="smt_servo_rot_continue_param"></block>
 		</category>
+		<category name="Motor Driver" colour="#ffbf00">
+			<block type="smt_l298n_motor_init"></block>
+			<block type="smt_l298n_motor">
+				<value name="SPEED">
+					<shadow type="math_number">
+						<field name="NUM">175</field>
+					</shadow>
+				</value>
+				<value name="ID">
+					<shadow type="text_char">
+						<field name="TEXT">ID1</field>
+					</shadow>
+				</value>
+			</block>
+		</category>
 	</category>
 	<category name="CAT_I2C" colour="#CC0033">
 		<category name="SOFT_I2C" colour="#CC0033">	
