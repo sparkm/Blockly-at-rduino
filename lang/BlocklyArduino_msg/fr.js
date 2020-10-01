@@ -5,7 +5,7 @@ var MSG = {
   btn_variable: "valider",
   span_card_picture_change: "changer",
   span_config: " configurer les blocs",
-  span_config_kit: "configurer la maquette",
+  span_config_kit: "comment configurer",
   span_picture: " afficher la carte",
   span_wiring: " plan de câblage",
   span_supervision: " supervision",
@@ -23,17 +23,20 @@ var MSG = {
   span_block_capture: "capture d'écran des blocs",
   span_copycode: "copier le code",
   span_configGlobal: " Configuration globale",
+  span_levelChoice: " choix du niveau",
   span_font: " choix de police",
   span_colors: " choix de couleur",
   span_reset: " ré initialiser",
+  span_wiring: " câblage à suivre ",
+  span_blockfactory: " usine à blocs ",
   span_RGB: " conversion couleur <-> valeurs RVB",
   span_convert: " conversion texte <-> binaire",
   span_bin2txt: " binaire -> texte ",
   span_txt2bin: " texte -> binaire ",
   span_edit_code: " éditer le code",
   span_saveIno: " sauver le code en INO",
-  span_verify_local: " vérification par EDI Arduino",
-  span_flash_local: " téléverser dans l'Arduino",
+  span_verify_local: " vérification du code",
+  span_flash_local: " téléverser dans le microcontrôleur",
   span_flash_local_result: " résultat du téléversement",
   span_detailedCompilation: " résultats détaillés",
   firstModalLabel: "Bienvenue sur Blockly@rduino !",
@@ -42,6 +45,7 @@ var MSG = {
   exampleModalLabel: "choisir un exemple",
   convertModalLabel: "conversion binaire <-> texte ASCII",
   RGBModalLabel: "conversion couleur <-> code",
+  wiringModalLabel: "câblage",
   configModalGlobalLabel: "configuration globale",
   configGlobalLabel: "configuration globale",
   span_languageMenu: "choix de la langue : ",
@@ -60,12 +64,12 @@ var MSG = {
   span_Upload_local: "un serveur local ",
   cb_cf_verify_btn: "vérifier le code",
   btn_edit_code :"éditer le code",
-  cb_cf_flash_btn: "téléverser dans l'Arduino",
+  cb_cf_flash_btn: "téléverser dans le microcontrôleur",
   button_saveArduino: "sauvegarde en fichier INO",
   span_pasteIDEArduino: "ouvrir dans l'EDI Arduino",
   span_connect_serial: " connecter la console série",
   a_blocks:" blocs",
-  a_arduino:" code Arduino",
+  a_arduino:" code",
   a_term:" console Série",
   configModalLabel:"choix des catégories de blocs",
   span_functionToggle:"classer les blocs par catégories de ",
@@ -79,12 +83,12 @@ var MSG = {
   btn_close:"fermer",
   btn_saveConfig:"enregistrer la configuration",
   btn_valid:"valider",
-  editModalLabel:"édition du code Arduino",
+  editModalLabel:"édition du code",
   btn_closeCode:"annuler",
   btn_validCode:"valider",
   btn_size_min:"réduire la fenêtre",
   btn_size_max:"agrandir la fenêtre",
-  btn_preview:"aperçu du code Arduino",
+  btn_preview:"aperçu du code",
   btn_inline:"bascule orientation des blocks",
   httpRequestError: "Il y a eu un problème avec la demande.",
   linkAlert: "Partagez vos blocs grâce à ce lien:\n\n%1",
@@ -101,7 +105,7 @@ var MSG = {
   arduino_card:"supprimer tout et sélectionner une carte",
   span_about:"à propos",
   aboutModalLabel:"à propos ...",
-  aboutBody:"<br />- développement et améliorations par Sébastien Canet (<a href='mailto:sebastien.canet@ac-nantes.fr' traget=_blank>sebastien.canet@ac-nantes.fr</a>), grâce à l'indispensable travail et les conseils d'Olivier Métayer, merci à tous les contributeurs par mails ou sur le forum !" 
+  aboutBody:"<br />- développement par Sébastien Canet (<a href='mailto:sebastien.canet@ac-nantes.fr' traget=_blank>sebastien.canet@ac-nantes.fr</a>), aidé d'Olivier Métayer, merci à tous les contributeurs par mails ou sur le forum !" 
 	+ "<br />"
 	+ "<br />S'appuie sur :",
   msg_ajax_ko:"Requêtes AJAX non supportées par votre navigateur, les fonctionnalités\n"
@@ -109,10 +113,22 @@ var MSG = {
 	+ "- chargement de blocs via l'URL \n"
 	+ "- supervision\n"
 	+ "\n\n"
-	+ "Pour Chrome, veuillez vérifier sur la page suivante :\n"
-	+ "http://www.chrome-allow-file-access-from-file.com\n",
+	+ "Veuillez suivre les instructions sur la page suivante :\n"
+	+ "http://testingfreak.com/how-to-fix-cross-origin-request-security-cors-error-in-firefox-chrome-and-ie/\n",
+  paypalModalLabel:"Aidez les logiciels libres !",
+  paypalBody:"Merci de faire un don pour aider au développement et à l'amélioration de ce logiciel, SANS VOUS LES LOGICIELS LIBRES NE PEUVENT SURVIVRE !" 
+	+ "<br />"
+	+ "<br />ENSEIGNANTS & ASSOCIATIONS"
+	+ "<br />vous pouvez aussi me demander une facture (<a href='mailto:scanet@libreduc.cc' traget=_blank>scanet@libreduc.cc</a>) pour que votre structure me fasse un 'don' officiel par virement bancaire. Je ne fais pas payer de licence mais je compte sur vous pour aider du montant auquel vous estimez ce travail.",
+  msg_ajax_ko:"Requêtes AJAX non supportées par votre navigateur, les fonctionnalités\n"
+	+ "suivantes ne seront pas opérationnelles : \n"
+	+ "- chargement de blocs via l'URL \n"
+	+ "- supervision\n"
+	+ "\n\n"
+	+ "Veuillez suivre les instructions sur la page suivante :\n"
+	+ "http://testingfreak.com/how-to-fix-cross-origin-request-security-cors-error-in-firefox-chrome-and-ie/\n",  
   span_ajax_msg:"Ne plus afficher ce message.",
-  span_forms:"UTILISATEUR, QUI ETES VOUS ???",
+  span_forms:"UTILISATEURS, QUI ETES VOUS ???",
   span_menu_1:"Projets",
   span_menu_11:"ouvrir...",
   span_menu_12:"sauver sous...",
@@ -147,4 +163,9 @@ var MSG = {
   span_menu_52:"wiki",
   span_menu_53:"forum",
   span_menu_6:"à propos",
+  varText1:"La variable ",
+  varText2:"a été typée comme '",
+  varText3:"'\n",
+  varText4:"et ce bloc essaie de changer le type en '",
+  varText5:"'!",
 };

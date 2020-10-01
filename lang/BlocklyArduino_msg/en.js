@@ -23,9 +23,12 @@ var MSG = {
   span_block_capture: "Screenshot ",
   span_copycode: "Copy code",
   span_configGlobal: " Global configuration",
+  span_levelChoice: " level choice",
   span_font: " Font ",
   span_colors: " Colors ",
   span_reset: " Reset workspace & preferences",
+  span_wiring: " wiring ",
+  span_blockfactory: " blocks factory ",
   span_RGB: " Convert Color <-> RGB Values",
   span_convert: " Convert Text <-> Binary",
   span_bin2txt: " Binary -> Text ",
@@ -42,6 +45,7 @@ var MSG = {
   exampleModalLabel: "choose an example",
   convertModalLabel: "Convert Binary <-> ASCII Text",
   RGBModalLabel: "Convert Color <-> Code",
+  wiringModalLabel: "wiring",
   configModalGlobalLabel: " Configuration",
   configGlobalLabel: " Project Setup ",
   span_languageMenu: "Language: ",
@@ -65,7 +69,7 @@ var MSG = {
   span_pasteIDEArduino: "Copy to the Arduino IDE",
   span_connect_serial: " Connect to Serial Console",
   a_blocks:" Blocks",
-  a_arduino:" View source code",
+  a_arduino:" Source code",
   a_term:" Serial Console",
   configModalLabel:"Blocks category selector",
   span_functionToggle:" Sort Block categories by ",
@@ -101,18 +105,23 @@ var MSG = {
   arduino_card:"Delete all and select a Board",
   span_about:"About",
   aboutModalLabel:"About Blockly@rduino",
-  aboutBody:"<br />Development and adaptations by Sébastien Canet(<a href='mailto:sebastien.canet@ac-nantes.fr' traget=_blank>sebastien.canet@ac-nantes.fr</a>), additional work on CSS and JS functions by Olivier Metayer, <b>thanks to all contributors (meet them at the developer forum)!</b>"
+  aboutBody:"<br />Development by Sébastien Canet(<a href='mailto:sebastien.canet@ac-nantes.fr' traget=_blank>sebastien.canet@ac-nantes.fr</a>), helped by Olivier Metayer, <b>thanks to all contributors (meet them at the developer forum)!</b>"
 	+ "<br />"
 	+ "<br />Thanks to:",
+  paypalModalLabel:"Help free software!",
+  paypalBody:"Thank you for making a donation to help development and improvement of this software, WITHOUT YOU FREE SOFTWARE CANNOT SURVIVE!" 
+	+ "<br />"
+	+ "<br />TEACHERS & ASSOCIATIONS"
+	+ "<br />you can also ask me for an invoice (<a href='mailto:scanet@libreduc.cc' traget=_blank>scanet@libreduc.cc</a>) for your organization give me an official 'donation' by bank transfer. I do not charge a license but I count on you to help the amount you value this work.",
   msg_ajax_ko:"AJAX requests are not supported by your browser, the following features\n"
 	+ "will not be operational : \n"
 	+ "- Load Blocks through url \n"
 	+ "- Supervision"
 	+ "\n\n"
-	+ "For Chrome, please check here :\n"
-	+ "http://www.chrome-allow-file-access-from-file.com\n",
+	+ "Please follow these instructions:\n"
+	+ "http://testingfreak.com/how-to-fix-cross-origin-request-security-cors-error-in-firefox-chrome-and-ie/\n",
   span_ajax_msg:"Do not show this message again",
-  span_forms:"ENJOY SOFTWARE TINKERING!",
+  span_forms:"USERS, WHO ARE YOU?",
   span_menu_1:"Projects",
   span_menu_11:"Open...",
   span_menu_12:"Save as...",
@@ -147,4 +156,9 @@ var MSG = {
   span_menu_52:"Wiki",
   span_menu_53:"Forum",
   span_menu_6:"About ",
+  varText1:"The variable ",
+  varText2:" has been first assigned to the '",
+  varText3:"' type\n",
+  varText4:"and this block tries to assign the type '",
+  varText5:"'!",
 };

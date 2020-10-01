@@ -80,6 +80,14 @@ Blockly.Blocks.array_declare.getBlockType = function() {
 	return Blockly.Types.identifyNumber(numString);
 };
 
+Blockly.Blocks.creer_tableau.getBlockType = function() {
+	return Blockly.Types.NUMBER;
+};
+
+Blockly.Blocks.fixer_tableau.getBlockType = function() {
+	return Blockly.Types.NUMBER;
+};
+
 //---------------------------------maths--------------------------------------------
 
 Blockly.Blocks.math_number.getBlockType = function() {
@@ -141,8 +149,5 @@ Blockly.Blocks.text_length.getBlockType = function() {
 	return Blockly.Types.NUMBER;
 };
 Blockly.Blocks.text_isEmpty.getBlockType = function() {
-	return Blockly.Types.BOOLEAN;
-};
-Blockly.Blocks.text_compare_string.getBlockType = function() {
 	return Blockly.Types.BOOLEAN;
 };

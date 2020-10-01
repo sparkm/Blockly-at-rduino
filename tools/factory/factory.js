@@ -4,28 +4,15 @@ var blockType = '';
 var mainWorkspace = null;
 var previewWorkspace = null;
 
-function onchange() {
-  var name = '';
-  var rootBlock = getRootBlock();
-  if (rootBlock) {
-    name = rootBlock.getFieldValue('NAME');
-  }
-  blockType = name.replace(/\W/g, '_').replace(/^(\d)/, '_\\1').toLowerCase();
-  if (!blockType) {
-    blockType = 'unnamed';
-  }
-  updateLanguage();
-  updateGenerator();
-  updatePreview();
-}
 function updateLanguage() {
   var code = [];
   var rootBlock = getRootBlock();
   formatJavaScript(code, rootBlock);
   injectCode(code, 'languagePre');
 }
+
 function formatJavaScript(code, rootBlock) {
-  code.push("Blockly.Blocks['" + blockType + "'] = { init: function() {");
+  code.push("Blockly.Blocks['" + blockType + "'] = {\n  init: function() {");
   var TYPES = {'input_value': 'appendValueInput','input_statement': 'appendStatementInput','input_dummy': 'appendDummyInput'};
   var contentsBlock = rootBlock.getInputTargetBlock('INPUTS');
   while (contentsBlock) {
@@ -79,11 +66,12 @@ function formatJavaScript(code, rootBlock) {
   } else {
 	  code.push('    this.setColour("#00929f");');
   }
-  code.push("    this.setTooltip('ce bloc sert à...');");
-  code.push("    this.setHelpUrl('http://www.mon-club-elec.fr/pmwiki_reference_arduino/pmwiki.php?n=Main.ReferenceMaxi');");
+  code.push("    this.setTooltip(" + Blockly.Msg.BF_tooltip + ");");
+  code.push("    this.setHelpUrl('" + Blockly.Msg.BF_helpUrl + "');");
   code.push("  }");
   code.push("};");
 }
+
 function connectionLineJs_(functionName, typeName) {
   var type = getOptTypesFrom(getRootBlock(), typeName);
   if (type) {
@@ -93,6 +81,7 @@ function connectionLineJs_(functionName, typeName) {
   }
   return '    this.' + functionName + '(true' + type + ');';
 }
+
 function getFieldsJs_(block) {
   var fields = [];
   while (block) {
@@ -156,9 +145,11 @@ function getFieldsJs_(block) {
   }
   return fields;
 }
+
 function escapeString(string) {
   return JSON.stringify(string);
 }
+
 function getOptTypesFrom(block, name) {
   var types = getTypesFrom_(block, name);
   if (types.length == 0) {
@@ -171,6 +162,7 @@ function getOptTypesFrom(block, name) {
     return '[' + types.join(', ') + ']';
   }
 }
+
 function getTypesFrom_(block, name) {
   var typeBlock = block.getInputTargetBlock(name);
   var types;
@@ -195,6 +187,7 @@ function getTypesFrom_(block, name) {
   }
   return types;
 }
+
 function updateGenerator() {
   function makeVar(root, name) {
     name = name.toLowerCase().replace(/\W/g, '_');
@@ -202,7 +195,7 @@ function updateGenerator() {
   }
   var language = 'JavaScript';
   var code = [];
-  code.push("Blockly.Arduino['" + blockType +"'] = function(block) {");
+  code.push("Blockly.Arduino['" + blockType +"'] = function(block) {\n  //" + Blockly.Msg.BF_helpGenerator);
   var rootBlock = getRootBlock();
   if (rootBlock) {
     var blocks = rootBlock.getDescendants();
@@ -249,12 +242,12 @@ function updateGenerator() {
           break;
       }
     }
-	code.push("  Blockly.Arduino.includes_[] = 'placer ici le code de ma bibliotheque'");
-	code.push("  Blockly.Arduino.variables_[] = 'placer ici le code de mes variables'");
-	code.push("  Blockly.Arduino.definitions_[] = 'placer ici le code de mes instances'");
-	code.push("  Blockly.Arduino.userFunctions_[] = 'placer ici le code de mes fonctions'");
-    code.push("  Blockly.Arduino.setups_[]='placer ici le code du setup()'");
-	code.push("  var code = \'placer ici le code du loop()\';");
+	code.push("  Blockly.Arduino.includes_[] = '" + Blockly.Msg.BF_help_includes + "'");
+	code.push("  Blockly.Arduino.variables_[] = '" + Blockly.Msg.BF_help_variables + "'");
+	code.push("  Blockly.Arduino.definitions_[] = '" + Blockly.Msg.BF_help_definitions + "'");
+	code.push("  Blockly.Arduino.userFunctions_[] = '" + Blockly.Msg.BF_help_functions + "'");
+    code.push("  Blockly.Arduino.setups_[]='" + Blockly.Msg.BF_help_setup + "'");
+	code.push("  var code = \'" + Blockly.Msg.BF_help_loop + "'");
     if (rootBlock.getFieldValue('CONNECTIONS') == 'LEFT') {
       code.push("  return [code, Blockly.Arduino.ORDER_ATOMIC];");
     } else {
@@ -264,7 +257,9 @@ function updateGenerator() {
   code.push("};");
   injectCode(code, 'generatorPre');
 }
+
 var oldDir = null;
+
 function updatePreview() {
   var newDir = document.getElementById('direction').value;
   if (oldDir != newDir) {
@@ -277,7 +272,7 @@ function updatePreview() {
   }
   previewWorkspace.clear();
   if (Blockly.Blocks[blockType]) {
-    throw 'Block name collides with existing property: ' + blockType;
+    throw Blockly.Msg.BF_blockType_warning + blockType;
   }
   var code = document.getElementById('languagePre').textContent.trim();
   if (!code) {
@@ -294,6 +289,7 @@ function updatePreview() {
   previewBlock.setDeletable(false);
   previewBlock.moveBy(15, 10);
 }
+
 function injectCode(code, id) {
   var pre = document.getElementById(id);
   pre.textContent = code.join('\n');
@@ -301,6 +297,7 @@ function injectCode(code, id) {
   code = prettyPrintOne(code, 'js');
   pre.innerHTML = code;
 }
+
 function getRootBlock() {
   var blocks = mainWorkspace.getTopBlocks(false);
   for (var i = 0, block; block = blocks[i]; i++) {
@@ -310,6 +307,22 @@ function getRootBlock() {
   }
   return null;
 }
+
+function onchange() {
+  var name = '';
+  var rootBlock = getRootBlock();
+  if (rootBlock) {
+    name = rootBlock.getFieldValue('NAME');
+  }
+  blockType = name.replace(/\W/g, '_').replace(/^(\d)/, '_\\1').toLowerCase();
+  if (!blockType) {
+    blockType = 'unnamed';
+  }
+  updateLanguage();
+  updateGenerator();
+  updatePreview();
+}
+
 function init() {
   var expandList = [
     document.getElementById('blockly'),
@@ -324,9 +337,27 @@ function init() {
     }
   };
   onresize();
+
+  CodeFactory.initLanguageBlockFactory();
+
   window.addEventListener('resize', onresize);
-  var toolbox = document.getElementById('toolbox_factory');
-  mainWorkspace = Blockly.inject('blockly',{toolbox: toolbox, media: '../../media/'});
+	// Construct the toolbox XML, replacing translated variable names.
+	var toolboxText = document.getElementById('toolbox_factory').outerHTML;
+	toolboxText = toolboxText.replace(/(^|[^%]){(\w+)}/g, function(m, p1, p2) {return p1 + MSG[p2];});
+	var toolboxXml = Blockly.Xml.textToDom(toolboxText);
+  // var toolbox = document.getElementById('toolbox_factory');
+  mainWorkspace = Blockly.inject('blockly',
+	{grid:
+          {spacing: 25,
+           length: 3,
+           colour: '#ccc',
+           snap: true},
+	media: '../../media/',
+	toolbox: toolboxXml,
+	zoom:
+	   {controls: true,
+		wheel: true}
+	});
   var rootBlock = Blockly.Block.obtain(mainWorkspace, 'factory_base');
   rootBlock.initSvg();
   rootBlock.render();

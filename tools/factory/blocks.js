@@ -1,26 +1,32 @@
 'use strict';
 
-var ALIGNMENT_OPTIONS = [['à gauche', 'LEFT'], ['à droite', 'RIGHT'], ['au centre', 'CENTRE']];
+var ALIGNMENT_OPTIONS = [[Blockly.Msg.BF_alignement_left, 'LEFT'], [Blockly.Msg.BF_alignement_right, 'RIGHT'], [Blockly.Msg.BF_alignement_center, 'CENTRE']];
+
 Blockly.Blocks['factory_base'] = { init: function() {
-    this.setColour("#00929f");
+    this.setColour("#5B80A5");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput('mon_bloc'), 'NAME');
+        .appendField(new Blockly.FieldTextInput(Blockly.Msg.BF_newBlock), 'NAME');
     this.appendStatementInput('INPUTS').setCheck('Input');
     var dropdown = new Blockly.FieldDropdown([
-        ['bloc externe', 'EXT'],
-        ['bloc interne', 'INT']]);
+        [Blockly.Msg.BF_external, 'EXT'],
+        [Blockly.Msg.BF_internal, 'INT']]);
     this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(dropdown, 'INLINE');
     dropdown = new Blockly.FieldDropdown([
-        ['↕ accroches haut&bas', 'BOTH'],
-        ['← accroche à gauche', 'LEFT'],
-        ["pas d'accroches", 'NONE'],
-        ['↑ accroche en haut', 'TOP'],
-        ['↓ accroche en bas', 'BOTTOM']],
+        [Blockly.Msg.BF_connect_updown, 'BOTH'],
+        [Blockly.Msg.BF_connect_left, 'LEFT'],
+        [Blockly.Msg.BF_connect_no, 'NONE'],
+        [Blockly.Msg.BF_connect_up, 'TOP'],
+        [Blockly.Msg.BF_connect_down, 'BOTTOM']],
         function(option) {
           this.sourceBlock_.updateShape_(option);
         });
-    this.appendDummyInput().setAlign(Blockly.ALIGN_RIGHT).appendField(dropdown, 'CONNECTIONS');
-    this.appendValueInput('COLOUR').setAlign(Blockly.ALIGN_RIGHT).setCheck('Colour').appendField('couleur');
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(dropdown, 'CONNECTIONS');
+    this.appendValueInput('COLOUR')
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.setCheck('Colour')
+		.appendField(Blockly.Msg.BF_color);
     this.setTooltip('Build a custom block by plugging\nfields, inputs and other blocks here.');
     this.setHelpUrl('https://developers.google.com/blockly/custom-blocks/block-factory');
   },
@@ -72,19 +78,20 @@ Blockly.Blocks['factory_base'] = { init: function() {
     }
   }
 };
+
 Blockly.Blocks['input_value'] = { init: function() {
-    this.setColour("#696969");
+    this.setColour("#5B80A5");
     this.appendDummyInput()
-        .appendField('bloc')
+        .appendField(Blockly.Msg.BF_input_value_title)
         .appendField(new Blockly.FieldTextInput('NAME'), 'INPUTNAME');
     this.appendStatementInput('FIELDS')
         .setCheck('Field')
-        .appendField('champ aligné')
+        .appendField(Blockly.Msg.BF_input_alignement)
         .appendField(new Blockly.FieldDropdown(ALIGNMENT_OPTIONS), 'ALIGN');
     this.appendValueInput('TYPE')
         .setCheck('Type')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField('type');
+        .appendField(Blockly.Msg.BF_input_value_type);
     this.setPreviousStatement(true, 'Input');
     this.setNextStatement(true, 'Input');
     this.setTooltip('A value socket for horizontal connections.');
@@ -98,19 +105,20 @@ Blockly.Blocks['input_value'] = { init: function() {
     inputNameCheck(this);
   }
 };
+
 Blockly.Blocks['input_statement'] = { init: function() {
-    this.setColour("#696969");
+    this.setColour("#5B80A5");
     this.appendDummyInput()
-        .appendField('déclaration')
+        .appendField(Blockly.Msg.BF_input_statement_title)
         .appendField(new Blockly.FieldTextInput('NAME'), 'INPUTNAME');
     this.appendStatementInput('FIELDS')
         .setCheck('Field')
-        .appendField('champ aligné')
+        .appendField(Blockly.Msg.BF_input_alignement)
         .appendField(new Blockly.FieldDropdown(ALIGNMENT_OPTIONS), 'ALIGN');
     this.appendValueInput('TYPE')
         .setCheck('Type')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField('type');
+        .appendField(Blockly.Msg.BF_input_alignement);
     this.setPreviousStatement(true, 'Input');
     this.setNextStatement(true, 'Input');
     this.setTooltip('A statement socket for enclosed vertical stacks.');
@@ -124,13 +132,14 @@ Blockly.Blocks['input_statement'] = { init: function() {
     inputNameCheck(this);
   }
 };
+
 Blockly.Blocks['input_dummy'] = { init: function() {
-    this.setColour("#696969");
+    this.setColour("#5B80A5");
     this.appendDummyInput()
-        .appendField("entrée");
+        .appendField(Blockly.Msg.BF_input_dummy_title);
     this.appendStatementInput('FIELDS')
         .setCheck('Field')
-        .appendField('champ aligné')
+        .appendField(Blockly.Msg.BF_input_alignement)
         .appendField(new Blockly.FieldDropdown(ALIGNMENT_OPTIONS), 'ALIGN');
     this.setPreviousStatement(true, 'Input');
     this.setNextStatement(true, 'Input');
@@ -140,10 +149,11 @@ Blockly.Blocks['input_dummy'] = { init: function() {
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=293');
   }
 };
+
 Blockly.Blocks['field_static'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('titre')
+        .appendField(Blockly.Msg.BF_field_static_title)
         .appendField(new Blockly.FieldTextInput(''), 'TEXT');
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
@@ -151,10 +161,11 @@ Blockly.Blocks['field_static'] = { init: function() {
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=88');
   }
 };
+
 Blockly.Blocks['field_input'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('texte')
+        .appendField(Blockly.Msg.BF_field_input_title)
         .appendField(new Blockly.FieldTextInput('default'), 'TEXT')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -171,10 +182,11 @@ Blockly.Blocks['field_input'] = { init: function() {
     fieldNameCheck(this);
   }
 };
+
 Blockly.Blocks['field_math'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('nombre')
+        .appendField(Blockly.Msg.BF_field_math_title)
         .appendField(new Blockly.FieldTextInput('123'), 'TEXT')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -191,10 +203,11 @@ Blockly.Blocks['field_math'] = { init: function() {
     fieldNameCheck(this);
   }
 };
+
 Blockly.Blocks['field_angle'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('angle')
+        .appendField(Blockly.Msg.BF_field_angle_title)
         .appendField(new Blockly.FieldAngle('90'), 'ANGLE')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -211,10 +224,13 @@ Blockly.Blocks['field_angle'] = { init: function() {
     fieldNameCheck(this);
   }
 };
+
 Blockly.Blocks['field_dropdown'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('menu')
+        .appendField(Blockly.Msg.BF_field_dropdown_title)
+        .appendField(',')
+        .appendField(Blockly.Msg.BF_field_dropdown_title2)
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
     this.appendDummyInput('OPTION0')
         .appendField(new Blockly.FieldTextInput('option'), 'USER0')
@@ -304,30 +320,32 @@ Blockly.Blocks['field_dropdown'] = { init: function() {
       return;
     }
     if (this.optionCount_ < 1) {
-      this.setWarningText('Drop down menu must\nhave at least one option.');
+      this.setWarningText(Blockly.Msg.BF_field_dropdown_warning);
     } else {
       fieldNameCheck(this);
     }
   }
 };
+
 Blockly.Blocks['field_dropdown_container'] = {
   // Container.
   init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('menu');
+        .appendField(Blockly.Msg.BF_field_dropdown_title);
     this.appendStatementInput('STACK');
     this.setTooltip('Add, remove, or reorder options\nto reconfigure this dropdown menu.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=386');
     this.contextMenu = false;
   }
 };
+
 Blockly.Blocks['field_dropdown_option'] = {
   // Add option.
   init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('option');
+        .appendField(Blockly.Msg.BF_field_dropdown_option);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Add a new option to the dropdown menu.');
@@ -335,10 +353,11 @@ Blockly.Blocks['field_dropdown_option'] = {
     this.contextMenu = false;
   }
 };
+
 Blockly.Blocks['field_checkbox'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('case à cocher')
+        .appendField(Blockly.Msg.BF_field_checkbox_title)
         .appendField(new Blockly.FieldCheckbox('TRUE'), 'CHECKED')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -355,10 +374,11 @@ Blockly.Blocks['field_checkbox'] = { init: function() {
     fieldNameCheck(this);
   }
 };
+
 Blockly.Blocks['field_colour'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('couleur')
+        .appendField(Blockly.Msg.BF_field_colour_title)
         .appendField(new Blockly.FieldColour('#ff0000'), 'COLOUR')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -375,10 +395,11 @@ Blockly.Blocks['field_colour'] = { init: function() {
     fieldNameCheck(this);
   }
 };
+
 Blockly.Blocks['field_variable'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     this.appendDummyInput()
-        .appendField('variable')
+        .appendField(Blockly.Msg.BF_field_variable_title)
         .appendField(new Blockly.FieldTextInput('item'), 'TEXT')
         .appendField(',')
         .appendField(new Blockly.FieldTextInput('NAME'), 'FIELDNAME');
@@ -395,20 +416,20 @@ Blockly.Blocks['field_variable'] = { init: function() {
     fieldNameCheck(this);
   }
 };
+
 Blockly.Blocks['field_image'] = { init: function() {
-    this.setColour("#00cc00");
+    this.setColour("#5BA58C");
     var src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABA9pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOjY1RTYzOTA2ODZDRjExREJBNkUyRDg4N0NFQUNCNDA3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjkzNEFBOEU3ODUyRTExRTU4RTQwRkQwODFEOUZEMEE3IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjkzNEFBOEU2ODUyRTExRTU4RTQwRkQwODFEOUZEMEE3IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE1IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YmZlYzFmZjgtZjI0MS00MTdhLWJmYTQtMjZiOTdkYTJkZGI2IiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6ZTJhODNmYmQtY2NkNC0xMTc4LTg4N2EtOWQ5MDZmZTFhNmQ0Ii8+IDxkYzp0aXRsZT4gPHJkZjpBbHQ+IDxyZGY6bGkgeG1sOmxhbmc9IngtZGVmYXVsdCI+Z2x5cGhpY29uc19zb2NpYWw8L3JkZjpsaT4gPC9yZGY6QWx0PiA8L2RjOnRpdGxlPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlS4AF8AAADxSURBVHjatFbbDcMgDDRV/8sGzQjdoIySbtAROkpHyAiMwAjJBjABhcpIfBCwE0A6BSFzhx+YAACoABvgOyNyKoGTG4wZDk6ccCXaHSKeMbRDBGbv//sWiv31SGCFEDp8niTb5EYlSQbnOeGGHjwQ1SLZc+8bIGM4MCQy4B0J01q2vnBzoHOSFvAwLAHFIJ/ZVcQ8va4JXAo52Xpe5ZLAnclhWwYl1yZGiBQ3RGkTaQSRmINXamxUD1hlip6s3F7Uq1SrXVMSyGXjwapeEpNEsOd8EFNGbs62a7tDYihPbaubDrlo3QXcQH4Ho39bfgIMAMz8AJn0V4bRAAAAAElFTkSuQmCC';
     this.appendDummyInput()
-        .appendField('image')
+        .appendField(Blockly.Msg.BF_field_image_title)
         .appendField(new Blockly.FieldTextInput(src), 'SRC');
     this.appendDummyInput()
-        .appendField('largeur')
-        .appendField(new Blockly.FieldTextInput('24',
-            Blockly.FieldTextInput.numberValidator), 'WIDTH')
-        .appendField('hauteur')
-        .appendField(new Blockly.FieldTextInput('24',
-            Blockly.FieldTextInput.numberValidator), 'HEIGHT')
-        .appendField('alternative')
+        .appendField(Blockly.Msg.BF_field_image_width)
+        .appendField(new Blockly.FieldTextInput('24', Blockly.FieldTextInput.numberValidator), 'WIDTH')
+        .appendField(Blockly.Msg.BF_field_image_height)
+        .appendField(new Blockly.FieldTextInput('24', Blockly.FieldTextInput.numberValidator), 'HEIGHT');
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.BF_field_image_alternativtext)
         .appendField(new Blockly.FieldTextInput('*'), 'ALT');
     this.setPreviousStatement(true, 'Field');
     this.setNextStatement(true, 'Field');
@@ -416,13 +437,14 @@ Blockly.Blocks['field_image'] = { init: function() {
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=567');
   }
 };
+
 Blockly.Blocks['type_group'] = {
   // Group of types.
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendValueInput('TYPE0')
         .setCheck('Type')
-        .appendField('ensemble :');
+        .appendField(Blockly.Msg.BF_field_type_group_title);
     this.appendValueInput('TYPE1')
         .setCheck('Type');
     this.setOutput(true, 'Type');
@@ -445,7 +467,7 @@ Blockly.Blocks['type_group'] = {
       var input = this.appendValueInput('TYPE' + x)
                       .setCheck('Type');
       if (x == 0) {
-        input.appendField('any of');
+        input.appendField(Blockly.Msg.BF_field_type_group_title);
       }
     }
   },
@@ -498,24 +520,26 @@ Blockly.Blocks['type_group'] = {
     }
   }
 };
+
 Blockly.Blocks['type_group_container'] = {
   // Container.
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('add types');
+        .appendField(Blockly.Msg.BF_field_type_group_title2);
     this.appendStatementInput('STACK');
     this.setTooltip('Add, or remove allowed type.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=677');
     this.contextMenu = false;
   }
 };
+
 Blockly.Blocks['type_group_item'] = {
   // Add type.
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('type');
+        .appendField(Blockly.Msg.BF_field_type_group_item);
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('Add a new allowed type.');
@@ -523,77 +547,84 @@ Blockly.Blocks['type_group_item'] = {
     this.contextMenu = false;
   }
 };
+
 Blockly.Blocks['type_null'] = {
   // Null type.
   valueType: null,
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('nul');
+        .appendField(Blockly.Msg.BF_field_type_group_null);
     this.setOutput(true, 'Type');
     this.setTooltip('Any type is allowed.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=602');
   }
 };
+
 Blockly.Blocks['type_boolean'] = {
   // Boolean type.
   valueType: 'Boolean',
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('binaire');
+        .appendField(Blockly.Msg.BF_field_type_boolean);
     this.setOutput(true, 'Type');
     this.setTooltip('Booleans (true/false) are allowed.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=602');
   }
 };
+
 Blockly.Blocks['type_number'] = {
   // Number type.
   valueType: 'Number',
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('nombre');
+        .appendField(Blockly.Msg.BF_field_type_number);
     this.setOutput(true, 'Type');
     this.setTooltip('Numbers (int/float) are allowed.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=602');
   }
 };
+
 Blockly.Blocks['type_string'] = {
   // String type.
   valueType: 'String',
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('texte');
+        .appendField(Blockly.Msg.BF_field_type_text);
     this.setOutput(true, 'Type');
     this.setTooltip('Strings (text) are allowed.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=602');
   }
 };
+
 Blockly.Blocks['type_list'] = {
   valueType: 'Array',
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('tableau');
+        .appendField(Blockly.Msg.BF_field_type_list);
     this.setOutput(true, 'Type');
     this.setTooltip('Arrays (lists) are allowed.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=602');
   }
 };
+
 Blockly.Blocks['type_other'] = {
   // Other type.
   init: function() {
-    this.setColour("#ff0000");
+    this.setColour("#5B67A5");
     this.appendDummyInput()
-        .appendField('autre')
+        .appendField(Blockly.Msg.BF_field_type_other)
         .appendField(new Blockly.FieldTextInput(''), 'TYPE');
     this.setOutput(true, 'Type');
     this.setTooltip('Custom type to allow.');
     this.setHelpUrl('https://www.youtube.com/watch?v=s2_xaEvcVI0#t=702');
   }
 };
+
 Blockly.Blocks['colour_hue'] = { init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldAngle('0', this.validator), 'HUE');
@@ -614,6 +645,7 @@ Blockly.Blocks['colour_hue'] = { init: function() {
     this.setColour(container.getAttribute('colour'));
   }
 };
+
 function fieldNameCheck(referenceBlock) {
   var name = referenceBlock.getFieldValue('FIELDNAME').toLowerCase();
   var count = 0;
@@ -628,7 +660,8 @@ function fieldNameCheck(referenceBlock) {
   var msg = (count > 1) ?
       'There are ' + count + ' field blocks\n with this name.' : null;
   referenceBlock.setWarningText(msg);
-}
+};
+
 function inputNameCheck(referenceBlock) {
   var name = referenceBlock.getFieldValue('INPUTNAME').toLowerCase();
   var count = 0;
@@ -641,6 +674,6 @@ function inputNameCheck(referenceBlock) {
     }
   }
   var msg = (count > 1) ?
-      'There are ' + count + ' input blocks\n with this name.' : null;
+      Blockly.Msg.BF_field_name_warning1 + count + Blockly.Msg.BF_field_name_warning2 : null;
   referenceBlock.setWarningText(msg);
-}
+};

@@ -5,7 +5,14 @@ goog.provide('Blockly.Msg.fr');
 goog.require('Blockly.Msg');
 
 Blockly.Msg.ARRAY_CREATE_EMPTY_TITLE = 'vide !';
-Blockly.Msg.ARRAY_CREATE_WITH = "constituée de";
+Blockly.Msg.tab_create="Créer le bloc 'élément du tableau %1'";
+Blockly.Msg.tab_create_fix="Créer le bloc 'mettre un élément du tableau %1 à'";
+Blockly.Msg.ARRAY_CREATE_WITH="constituée de";
+Blockly.Msg.ARRAY_taille="taille";
+Blockly.Msg.ARRAY_contenu="qui contient";
+Blockly.Msg.ARRAY_dim="taille de ";
+Blockly.Msg.ARRAY_index="index";
+Blockly.Msg._AT= "à";
 Blockly.Msg.ARRAY_CREATE_WITH_CONTAINER_TITLE_ADD = "liste ou tableau";
 Blockly.Msg.ARRAY_CREATE_WITH_CONTAINER_TOOLTIP = "ajoute, enlève, ou réordonne les éléments dans le bloc Tableau.";
 Blockly.Msg.ARRAY_CREATE_WITH_HELPURL = "";
@@ -68,7 +75,8 @@ Blockly.Msg.PROCEDURES_DEFRETURN_FUNCTION = "pour la fonction";
 Blockly.Msg.PROCEDURES_DEFRETURN_TYPE = "de type";
 
 Blockly.Msg.VARIABLES_AS = "de type";
-Blockly.Msg.VARIABLES_SET_CONST = "constante %1 fixée à %2";
+Blockly.Msg.VARIABLES_SET_CONST = "constante";
+Blockly.Msg.VARIABLES_SET_CONST_AT = "fixée à";
 Blockly.Msg.ARD_TYPE_ARRAY = "tableau";
 Blockly.Msg.ARD_TYPE_BOOL = "binaire (ToR)";
 Blockly.Msg.ARD_TYPE_CHAR = "caractère";
@@ -129,6 +137,7 @@ Blockly.Msg.CAT_Blynk_Sensors = " - capteurs du Smartphone";
 Blockly.Msg.CAT_DFRobot = "DFRobot";
 Blockly.Msg.CAT_DFRobot_SHIELD_LCDKEYPAD = " - carte LCD keypad"; //Added february 27th 2016
 Blockly.Msg.CAT_DFPLAYER = " - DFPlayer mini MP3";
+Blockly.Msg.CAT_DFRobot_ISD1820 = " - enregisteur de sons ISD1820";
 
 Blockly.Msg.CAT_LED_RGB_CHAIN = "DEL RGB en série";
 Blockly.Msg.CAT_OLED_U8G = "afficheur OLED I2C";
@@ -151,6 +160,9 @@ Blockly.Msg.CAT_GROVE_OUT = " - actionneurs";
 Blockly.Msg.CAT_GROVE_LCD = " - écrans LCD";
 Blockly.Msg.CAT_GROVE_LCD2 = " Ecrans LCD";
 Blockly.Msg.CAT_GROVE_COMM = " - communication";
+Blockly.Msg.CAT_GROVE_BEGINNER_KIT = "Grove Beginner Kit";  //added september 10th 2020
+Blockly.Msg.CAT_GROVE_BEGINNER_KIT_IN = Blockly.Msg.CAT_GROVE_IN;  //added september 10th 2020
+Blockly.Msg.CAT_GROVE_BEGINNER_KIT_OUT = Blockly.Msg.CAT_GROVE_OUT;  //added september 10th 2020
 
 Blockly.Msg.CAT_TECHNOZONE = "TechnoZone51";  //added march 11th 2015
 Blockly.Msg.CAT_TECHNOZONE_IN = " - capteurs";
@@ -212,15 +224,19 @@ Blockly.Msg.CAT_MBOT_4 = "mBot"; //added february 13th 2017
 Blockly.Msg.CAT_ROMEO_1 = " - RoMeo v2";
 Blockly.Msg.CAT_ROMEO_2 = " - RoMeo v2";
 Blockly.Msg.CAT_ROMEO_3 = " - RoMeo v2"; //added may 1st 2016
+Blockly.Msg.CAT_ROMEO_BLE_3 = "RoMeo BLE"; //added may 1st 2016
 
 Blockly.Msg.CAT_SPI_COMM = "ISP communication";
 Blockly.Msg.CAT_STEPPER = "Moteurs pas à pas"; //added august 28th 2016
 
 Blockly.Msg.CAT_MHK = "MyHumanKit"; //added august 23th 2016
 
-Blockly.Msg.CAT_ESUS = "carte Esus"; //added 8 october 2016
-Blockly.Msg.CAT_ESUS_WIFI = " - WiFi";
-Blockly.Msg.CAT_ESUS_MOTORS = " - moteurs";
+Blockly.Msg.CAT_MACE_ROBOTICS = "Macé Robotics"; //added 01/03/2019
+Blockly.Msg.CAT_ESUS = " - carte Esus"; //added 8 october 2016
+Blockly.Msg.CAT_ESUS_WIFI = " --> WiFi";
+Blockly.Msg.CAT_ESUS_MOTORS = " --> moteurs";
+Blockly.Msg.CAT_MRDUINO = " - robot MRduino";
+Blockly.Msg.CAT_MRDUINO2 = " - robot MRduino2";
 
 Blockly.Msg.CAT_APDS_9960_RGB_Gesture = "couleur + mouvement"; //added 9 october 2016
 
@@ -300,6 +316,9 @@ Blockly.Msg.CAT_PETITBOT_SERVO = "servomoteurs";
 Blockly.Msg.CAT_PETITBOT_LED = "diodes";
 
 Blockly.Msg.CAT_NRF24L01 = "nRF24L01"; //added 31/05/2018
+
+Blockly.Msg.CAT_SEEED = "Seeed studio"; //added 01/03/2018
+Blockly.Msg.CAT_MUSIC_SHIELD = "Seeed Music Shield v2.2"; //added 01/03/2018
  
 // Nouvelle arborescence 
 Blockly.Msg.CAT_FONCTION_AFFICHAGE = "Affichage";
@@ -358,7 +377,17 @@ Blockly.Msg.CAT_FONCTION_WIRELESS_ZIGBEE = "Zigbee";
 
 Blockly.Msg.CAT_FONCTION_STOCKAGE_EEPROM = "EEPROM";
 Blockly.Msg.CAT_FONCTION_STOCKAGE_SDCARD = "Carte SD";
+
+Blockly.Msg.CAT_CAPACITIVESENSOR = "détection capacitive";
  
+Blockly.Msg.CAT_ESP8266="ESP8266 IdO";
+Blockly.Msg.CAT_esp8266_wifi=" - WiFi";
+Blockly.Msg.CAT_html=" - HTML";
+
+Blockly.Msg.CAT_OTTO = "Otto robot"; //added 06/09/2019
+Blockly.Msg.CAT_OTTOH = "humanoïde"; //added 06/10/2019
+
+Blockly.Msg.CAT_VIRTUINO = "Virtuino"; //added 08/05/2020
 
 //**********************************Dropdown menus messages***********************************************
 
@@ -420,6 +449,10 @@ Blockly.Msg.ARDUINO_BASE_CONST = "définitions préalables";
 Blockly.Msg.ARDUINO_BASE_DEFINE_HELPURL = "https://www.arduino.cc/en/Reference/Define";
 Blockly.Msg.ARDUINO_BASE_DEFINE = "définitions";
 Blockly.Msg.ARDUINO_BASE_DEFINE_TOOLTIP = "Définition de constantes & bibliothèques";
+Blockly.Msg.ARDUINO_BASE_DEFINE_CONST_HELPURL = "https://www.arduino.cc/en/Reference/Define";
+Blockly.Msg.ARDUINO_BASE_DEFINE_CONST_INPUT1 = "définir la variable";
+Blockly.Msg.ARDUINO_BASE_DEFINE_CONST_INPUT2 = "comme étant égal à";
+Blockly.Msg.ARDUINO_BASE_DEFINE_CONST_TOOLTIP = "permet de créer et fixer une valeur à une variable, de manière constante";
 Blockly.Msg.ARDUINO_BASE_END = 'attente infinie (FIN de programme)';
 Blockly.Msg.ARDUINO_BASE_BEGIN_TOOLTIP = "ce bloc permet de définir l'ordre dans lequel le programme doit s'exécuter";
 Blockly.Msg.ARDUINO_BASE_BEGIN = "DÉBUT du programme";
@@ -430,10 +463,12 @@ Blockly.Msg.ARDUINO_BASE_TEMPO_TOOLTIP = "Ce bloc vérifie si le temps indiqué 
 Blockly.Msg.ARDUINO_BASE_TEMPO_HELPURL = "http://www.mon-club-elec.fr/pmwiki_reference_arduino/pmwiki.php?n=Main.ExempleBlinkWithoutDelay";
 Blockly.Msg.ARDUINO_BASE_TOGGLE = "basculer l'état de la broche";
 Blockly.Msg.ARDUINO_BASE_TOGGLE_TOOLTIP = "Toggle :\nécrire un état logique 0 si auparavant il y avait un état 1 (et inversement) sur la sortie spécifiée";
-Blockly.Msg.ARDUINO_BASE_INCLUDE_FILE_TEXT = "Inclure un fichier";
-Blockly.Msg.ARDUINO_BASE_INCLUDE_FILE_NAME = "Nom du fichier";
-Blockly.Msg.ARDUINO_BASE_INCLUDE_FILE_TOOLTIP = "Permet d'inclure un fichier contenu dans le repertoire de travail";
+Blockly.Msg.ARDUINO_BASE_INCLUDE_FILE_TEXT = "inclure un fichier";
+Blockly.Msg.ARDUINO_BASE_INCLUDE_FILE_NAME = "nom du fichier";
+Blockly.Msg.ARDUINO_BASE_INCLUDE_FILE_TOOLTIP = "permet d'inclure un fichier contenu dans le repertoire de travail";
 Blockly.Msg.ARDUINO_BASE_INCLUDE_FILE_HELPURL = "https://www.arduino.cc/reference/en/language/structure/further-syntax/include/";
+Blockly.Msg.ARDUINO_BASE_INCLUDE_LIB_TEXT = "inclure une bibliothèque";
+Blockly.Msg.ARDUINO_BASE_INCLUDE_LIB_TOOLTIP = "permet d'inclure une bibliothèque complémentaire contenue dans le repertoire de travail";
 Blockly.Msg.ARDUINO_CONSTRAIN = "limiter";
 Blockly.Msg.ARDUINO_CONSTRAIN_X = " le nombre";
 Blockly.Msg.ARDUINO_CONSTRAIN_A = "entre A = ";
@@ -472,7 +507,10 @@ Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_HELPURL = "http://arduino.cc/en/Reference/
 Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_INPUT = "la valeur lue sur la broche d'entrée Analogique";
 Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_TOOLTIP = "lit la valeur (comprise entre 0 et 1023) sur la broche choisie pour l'entrée d'informations analogiques.\nATTENTION à vérifier que la broche choisie soit de type A# (exemple : A0,A1,...) ";
 Blockly.Msg.ARDUINO_INOUT_ONOFF_HELPURL = "http://arduino.cc/en/Reference/Constants";
-Blockly.Msg.ARDUINO_INOUT_STAT="de l'état";
+Blockly.Msg.ARDUINO_INOUT_STATE ="de l'état";
+Blockly.Msg.ARDUINO_INOUT_ANGLE = "angle";
+Blockly.Msg.ARDUINO_INOUT_ANGLE_TOOLTIP = "angle entre 0 et 360°";
+Blockly.Msg.ARDUINO_INOUT_ANGLE_HELPURL = "https://developers.google.com/blockly/guides/create-custom-blocks/fields/built-in-fields/angle";
 Blockly.Msg.ARDUINO_PULSEIN="durée (en µs) sur la broche";
 Blockly.Msg.ARDUINO_PULSEIN_TIMEOUT="dans un délai (en µs) de";
 Blockly.Msg.ARDUINO_SERVO_MOVE_HELPURL = "http://www.arduino.cc/playground/ComponentLib/servo";
@@ -497,7 +535,7 @@ Blockly.Msg.ARDUINO_SERVO_ROT_CONTINUE_TOOLTIP = "utilise les degrés pour comme
 Blockly.Msg.ARDUINO_SERVO_PIN = "sur la broche";
 Blockly.Msg.ARDUINO_SERVO_ATTACH1 = "attacher un servomoteur";
 Blockly.Msg.ARDUINO_SERVO_ATTACH2 = "avec pour identifiant";
-Blockly.Msg.ARDUINO_SERVO_ATTACHED = "présence d'un servomoteur";
+Blockly.Msg.ARDUINO_SERVO_ATTACHED = "présence d'un servomoteur ?";
 Blockly.Msg.ARDUINO_SERVO_DETACH = "détacher le servomoteur de la broche";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_HELPURL = "http://www.arduino.cc/en/Serial/Print";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT = "afficher sur le port série le texte";
@@ -531,6 +569,11 @@ Blockly.Msg.Serial_Print_ForOct="octal";
 Blockly.Msg.Serial_read="donnée lue sur le port série";
 Blockly.Msg.Serial_avai="une donnée est disponible sur le port série ?";
 Blockly.Msg.Serial_flush="attente de fin de transmission par le port série";
+Blockly.Msg.Serial_line="un saut de ligne";
+Blockly.Msg.Serial_line_tooltip="permet d'aller à ligne sur le moniteur série";
+Blockly.Msg.ARDUINO_SERIAL_READSTRINGUNTIL_HELPURL = "https://www.arduino.cc/en/Serial/ReadStringUntil";
+Blockly.Msg.ARDUINO_SERIAL_READSTRINGUNTIL_CONTENT = "chaîne lue jusqu'au caractère";
+Blockly.Msg.ARDUINO_SERIAL_READSTRINGUNTIL_TOOLTIP = "lis les caractères un par un jusqu'à celui recherché, et renvoie toute la chaîne de caractères";
 
 //SOFTWARE SERIAL
 Blockly.Msg.SSERIAL_DEFAULT_NAME="COMserie";
@@ -1278,8 +1321,8 @@ Blockly.Msg.ROBUNO_TEXT10 = "du shield Moteurs CC";
 Blockly.Msg.ROBUNO_TEXT11 = "sur les broches";
 Blockly.Msg.ROBUNO_TEXT12 = "broche de commande de Direction (DIR)";
 Blockly.Msg.ROBUNO_TEXT13 = "broche de commande de la Vitesse (PWM~)";
-Blockly.Msg.ROBUNO_TEXT14 = "sens horaire (255) ou antihoraire (0)?";
-Blockly.Msg.ROBUNO_TEXT15 = "vitesse MAX (VRAI) ou nulle (FAUX)";
+Blockly.Msg.ROBUNO_TEXT14 = "sens horaire (VRAI) ou antihoraire (FAUX)?";
+Blockly.Msg.ROBUNO_TEXT15 = "vitesse MAX (255) ou nulle (0)";
 Blockly.Msg.ROBUNO_TEXT16 = "Carte de commande de deux moteurs CC";
 
 Blockly.Msg.ROBUNO_LUX_TITLE1 = "la luminosité lue sur la LDR Gauche";
@@ -1390,6 +1433,18 @@ Blockly.Msg.ROMEO3_MOTOR_TOOLTIP = "gestion individuelle des moteurs";
 Blockly.Msg.ROMEO3_SWITCH = "appui sur le bouton";
 Blockly.Msg.ROMEO_SWITCH_FIELDDROPDOWN = [["S1", "0"], ["S2", "147"], ["S3", "333"], ["S4", "510"], ["S5", "745"], ["aucun", "1023"]];
 Blockly.Msg.ROMEO3_SWITCH_TOOLTIP = "Vérifier le switch S1-S5 !!! Lire la valeur sur l'entrée Analogique A0 : 0 pour S1, 147 pour S2, 333 pour S3, 510 pour S4, 745 pour S5, 1023 si aucun";
+
+//Added March 13th 2019
+Blockly.Msg.ROMEO_HELPURL = "http://www.dfrobot.com/wiki/index.php/Romeo_V2-All_in_one_Controller_%28R3%29_%28SKU:DFR0225%29";
+Blockly.Msg.ROMEO_BLE_3_MOTOR1_SENS = "moteur M1 : sens";
+Blockly.Msg.ROMEO_BLE_3_MOTOR2_SENS = "moteur M2 : sens";
+Blockly.Msg.ROMEO_BLE_3_MOTOR_SENS = "1 : avancer | 0 : reculer";
+Blockly.Msg.ROMEO_BLE_3_MOTOR1_PWM = "moteur M1 : puissance (0~255)";
+Blockly.Msg.ROMEO_BLE_3_MOTOR2_PWM = "moteur M2 : puissance (0~255)";
+Blockly.Msg.ROMEO_BLE_3_MOTOR_TOOLTIP = "gestion individuelle des moteurs";
+Blockly.Msg.ROMEO_BLE_3_SWITCH = "appui sur le bouton";
+Blockly.Msg.ROMEO_BLE_SWITCH_FIELDDROPDOWN = [["S1", "0"], ["S2", "142"], ["S3", "331"], ["S4", "506"], ["S5", "742"], ["aucun", "1023"]];
+Blockly.Msg.ROMEO_BLE_3_SWITCH_TOOLTIP = "Vérifier le switch S1-S5 !!! Lire la valeur sur l'entrée Analogique A7 : 0 pour S1, 142 pour S2, 331 pour S3, 506 pour S4, 742 pour S5, 1023 si aucun";
 
 //Added september 16th 2017
 Blockly.Msg.VITESSE_ROTATION_HELPURL = "En cours de rédaction";
@@ -1516,7 +1571,6 @@ Blockly.Msg.ESUS_WIFI_SEND_STREAM = "envoyer donnée WiFi (texte)";
 Blockly.Msg.ESUS_WIFI_SEND_FLOAT_STREAM = "envoyer donnée WiFi (nombre)";
 
 //******** Robot MRduino (Mace Robotics)
-Blockly.Msg.CAT_MRDUINO = "MRduino Robot";
 Blockly.Msg.MRduino_init="Initialisation robot MRduino";
 Blockly.Msg.MRduino_forward="Avancer";
 Blockly.Msg.MRduino_forward_mm="Avancer distance";
@@ -2327,3 +2381,457 @@ Blockly.Msg.Adafruit_RGB_LCD_Shield_WRITE_FORMAT_FIELDDROPDOWN = [["0x", "0x"], 
 Blockly.Msg.Adafruit_RGB_LCD_Shield_READ_button_TEXT = "READ BUTTON";
 Blockly.Msg.Adafruit_RGB_LCD_Shield_READ_button_TOOLTIP = "UP = 0x08 - DOWN = 0x04 - LEFT = 0x10 - RIGHT = 0x02 - SELECT = 0x01";
 Blockly.Msg.Adafruit_RGB_LCD_Shield_READ_button_HELPURL = "https://learn.adafruit.com/rgb-lcd-shield";
+
+////////////////////////////DFROBOT Voice Recorder-ISD1820/////////////////////
+Blockly.Msg.dfrobot_ISD1820_HELPURL = "https://www.dfrobot.com/wiki/index.php/Voice_Recorder-ISD1820_SKU:_SEN0197";
+Blockly.Msg.dfrobot_ISD1820_TOOLTIP = "enregistre 10s max. de son par appui sur le bouton, lecture par bouton ou code";
+Blockly.Msg.dfrobot_ISD1820_record = "appui sur bouton pour enregistrer 10s maxi";
+Blockly.Msg.dfrobot_ISD1820_play = "jouer le son";
+Blockly.Msg.dfrobot_ISD1820_play_Input = "raccordé sur la broche";
+
+////////////////////////////Capacitive Sensor Librarie/////////////////////
+Blockly.Msg.CAPACITIV_HELPURL = "https://github.com/PaulStoffregen/CapacitiveSensor";
+Blockly.Msg.CAPACITIV_TEXT = "capacitive value";
+Blockly.Msg.CAPACITIV_INPUT1 = "send pinn";
+Blockly.Msg.CAPACITIV_INPUT2 = "sensor pin";
+Blockly.Msg.CAPACITIV_CALIBRATION = "automatic calibration";
+Blockly.Msg.CAPACITIV_TOOLTIP = "10M resistor between pins 4 & 2, pin 2 is sensor pin, add a wire and or foil if desired";
+
+////////////////////////////ESP8266 WiFi/////////////////////
+Blockly.Msg.esp8266_init_tooltip="initialisation du module wifi et connection avec les paramètres indiqués";
+Blockly.Msg.esp8266_1="Esp 8266";
+Blockly.Msg.esp8266_2="ssid";
+Blockly.Msg.esp8266_3="clé";
+Blockly.Msg.esp8266_4="IP";
+Blockly.Msg.esp8266_5="passerelle";
+Blockly.Msg.esp8266_6="masque";
+Blockly.Msg.esp8266_7=[["client", "client"],["serveur", "serveur"]];
+Blockly.Msg.esp8266_8="port";
+Blockly.Msg.esp8266_9=[["dynamique", "dynamic"],["statique", "static"]];
+Blockly.Msg.esp8266_10="adressage";
+Blockly.Msg.esp8266_recept_tooltip="reception";
+Blockly.Msg.esp8266_url="http://julien.coron.free.fr/?p=928";
+Blockly.Msg.esp8266_send_html_tooltip="...";
+Blockly.Msg.esp8266_send_html="";
+Blockly.Msg.esp8266_send_tooltip="...";
+Blockly.Msg.esp8266_send="";
+Blockly.Msg.esp8266_wait_tooltip="...";
+
+////////////////////////////OTTO DIY Robot/////////////////////
+Blockly.Msg.OTTO9_HOME_TEXT = "début";
+Blockly.Msg.OTTO9_HOME_TOOLTIP = "";
+Blockly.Msg.OTTO9_HOME_URL = "https://www.ottodiy.com/";
+Blockly.Msg.OTTO9_MOVE_TEXT = "déplacement";
+Blockly.Msg.OTTO9_MOVE_CHOICE = [["en avant", "FORWARD"], ["en arrière", "BACKWARD"], ["tourne à gauche", "LEFT"], ["tourne à droite", "RIGHT"], ["penche à gauche", "BENDLEFT"], ["penche à droite", "BENDRIGHT"], ["secoue la jambe gauche", "SHAKELEFT"], ["secoue la jambe droite", "SHAKERIGHT"]];
+Blockly.Msg.OTTO9_MOVE_SPEED_TEXT = "vitesse";
+Blockly.Msg.OTTO9_MOVE_SPEED_CHOICE = [["lente", "600"], ["normale", "800"], ["vite", "1000"], ["très vite", "1200"], ["lumière", "1400"]];
+Blockly.Msg.OTTO9_DANCE_TEXT = "danse";
+Blockly.Msg.OTTO9_DANCE_CHOICE = [["moonwalker left", "moonwalkerLEFT"],  ["moonwalker right", "moonwalkerRIGHT"],["crusaito left", "crusaitoLEFT"],["crusaito right", "crusaitoRIGHT"], ["flapping front", "flappingFRONT"], ["flapping back", "flappingBACK"]];
+Blockly.Msg.OTTO9_DANCE_SPEED_TEXT = "vitesse";
+Blockly.Msg.OTTO9_DANCE_SPEED_CHOICE = [["normale", "1000"], ["lente", "2000"], ["très lente", "3000"],  ["vite", "750"], ["très vite", "500"], ["luminique", "250"]];
+Blockly.Msg.OTTO9_DANCE_SIZE_TEXT = "taille";
+Blockly.Msg.OTTO9_DANCE_SIZE_CHOICE = [["normale", "25"], ["petite", "10"], ["grande", "40"]];
+Blockly.Msg.OTTO9_DO_TEXT = "faire";
+Blockly.Msg.OTTO9_DO_CHOICE = [ ["swing", "swing"], ["updown", "updown"], ["tiptoeSwing", "tiptoeSwing"], ["jitter", "jitter"], ["ascendingTurn", "ascendingTurn"]];
+Blockly.Msg.OTTO9_DO_SPEED_TEXT = "vitesse";
+Blockly.Msg.OTTO9_DO_SPEED_CHOICE = [["normale", "1000"],["lente", "2000"],["très lente", "3000"] , ["rapide", "750"], ["très rapide", "500"], ["luminique", "250"]];
+Blockly.Msg.OTTO9_DO_SIZE_TEXT = "size";
+Blockly.Msg.OTTO9_DO_SIZE_CHOICE = [["normal", "20"], ["little", "5"], ["big", "45"]];
+Blockly.Msg.OTTO9_GESTURE_TEXT = "geste";
+Blockly.Msg.OTTO9_GESTURE_CHOICE = [["joyeux", "OttoHappy"], ["très joyeux", "OttoSuperHappy"], ["triste", "OttoSad"], ["dort", "OttoSleeping"], ["élan", "OttoFart"], ["confus", "OttoConfused"], ["agité", "OttoFretful"], ["amoureux", "OttoLove"], ["en colère", "OttoAngry"], ["magique", "OttoMagic"], ["vagues", "OttoWave"], ["victoire", "OttoVictory"], ["chute", "OttoFail"]];
+Blockly.Msg.OTTO9_SOUND_TEXT = "son";
+Blockly.Msg.OTTO9_SOUND_CHOICE = [["câlin", "S_cuddly"], ["OhOoh", "S_OhOoh"], ["OhOoh2", "S_OhOoh2"], ["surprise", "S_surprise"], ["bouton pressé", "S_buttonPushed"], ["mode 1", "S_mode1"], ["mode 2", "S_mode2"], ["mode 3", "S_mode3"], ["dort", "S_sleeping"], ["élan 1", "S_fart1"], ["élan 2", "S_fart2"], ["élan 3", "S_fart3"], ["joyeux", "S_happy"], ["joyeux simple", "S_happy_short"], ["très joyeux", "S_superHappy"], ["triste", "S_sad"], ["confus", "S_confused"], ["connection", "S_connection"], ["déconnection", "S_disconnection"]];
+Blockly.Msg.OTTO9_GETDISTANCE_TEXT = "distance";
+Blockly.Msg.OTTO9_GETNOISE_TEXT = "son";
+Blockly.Msg.OTTO9_GETTOUCH_TEXT = "touché";
+Blockly.Msg.OTTO9_MOUTH_TEXT = "bouche";
+Blockly.Msg.OTTO9_MOUTH_CHOICE = [["happyOpen", "happyOpen"],["happyClosed", "happyClosed"],["sadOpen", "23"], ["sadClosed", "24"],["vampire1", "vamp1"], ["vampire2", "vamp2"],   ["smile", "smile"], ["heart", "heart"], ["small surprise", "smallSurprise"], ["big surprise", "bigSurprise"], ["confused", "confused"], ["0", "zero"], ["1", "one"], ["2", "two"], ["3", "three"], ["4", "four"],["5", "five"],["6", "six"],["7", "seven"],["8", "eight"],["9", "nine"], ["x", "xMouth"], ["ok", "okMouth"],["interrogation", "27"],["tongue", "tongueOut"],["culito", "culito"],  ["thunder", "thunder"], ["line", "lineMouth"], ["diagonal", "21"], ["little Uuh", "littleUuh, i"], ["dreamMouth0", "dreamMouth, 0"], ["dreamMouth1", "dreamMouth, 1"], ["dreamMouth2", "dreamMouth, 2"]];
+Blockly.Msg.OTTO9_MATRIX_TEXT = "matrice";
+Blockly.Msg.OTTO9_MATRIXTEXT_TEXT = "matrice de texte";
+Blockly.Msg.OTTO9_ARMS_TEXT = "bras";
+Blockly.Msg.OTTO9_ARMS_CHOICE = [["en l'air", "HANDSUP"], ["gauche saluer", "HANDWAVE1"], ["droit saluer", "HANDWAVE2"]];
+
+//20191010
+Blockly.Msg.CAT_COG = "COG";
+Blockly.Msg.CAT_MICROSAURUS = "MicroSaurus";
+Blockly.Msg.CAT_MICROMACHINE = "MicroMachine";
+//
+Blockly.Msg.ms_IR_init_TEXT = "initialiser infrarouge";
+Blockly.Msg.ms_IR_check_TEXT = "vérifier si IR reçoit";
+Blockly.Msg.ms_IR_flag_TEXT = "recevoir un message";
+Blockly.Msg.ms_IR_reset_TEXT = "réinitialiser message";
+Blockly.Msg.ms_IR_reception_code_TEXT = "code reçu";
+Blockly.Msg.ms_INIT_WAV = "initialiser lecture, son 1";
+Blockly.Msg.ms_INIT_WAV_SOUND2 = "son 2";
+Blockly.Msg.ms_INIT_WAV_SOUND3 = "son 3";
+Blockly.Msg.ms_INIT_WAV_AUDPIN = "broche OUT";
+Blockly.Msg.ms_INIT_WAV_ENBLPIN = "broche EN";
+Blockly.Msg.ms_PLAY_WAV = "lire le son ";
+Blockly.Msg.ms_ACTION_STOP = "STOP";
+Blockly.Msg.ms_ACTION_FRONT = "patte avant";
+Blockly.Msg.ms_ACTION_REAR = "patte arrière";
+Blockly.Msg.ms_ACTION_OFFSET = "réglage";
+Blockly.Msg.ms_ACTION_FWRD = "avancer";
+Blockly.Msg.ms_ACTION_BWRD = "reculer";
+Blockly.Msg.ms_ACTION_LTRN = "tourner à gauche";
+Blockly.Msg.ms_ACTION_RTRN = "tourner à droite";
+//
+Blockly.Msg.mm_IR_init_TEXT = "initialiser infrarouge";
+Blockly.Msg.mm_IR_check_TEXT = "vérifier si IR reçoit";
+Blockly.Msg.mm_IR_flag_TEXT = "recevoir un message";
+Blockly.Msg.mm_IR_reset_TEXT = "réinitialiser message";
+Blockly.Msg.mm_IR_reception_code_TEXT = "code reçu";
+Blockly.Msg.mm_INIT_WAV = "initialiser lecture, son 1";
+Blockly.Msg.mm_INIT_WAV_SOUND2 = "son 2";
+Blockly.Msg.mm_INIT_WAV_SOUND3 = "son 3";
+Blockly.Msg.mm_INIT_WAV_AUDPIN = "broche OUT";
+Blockly.Msg.mm_INIT_WAV_ENBLPIN = "broche EN";
+Blockly.Msg.mm_PLAY_WAV = "lire le son ";
+Blockly.Msg.mm_ACTION_INIT = "initialiser action";
+Blockly.Msg.mm_ACTION_STOP = "STOP";
+Blockly.Msg.mm_ACTION_FRONT = "jambe avant";
+Blockly.Msg.mm_ACTION_REAR = "jambe arrière";
+Blockly.Msg.mm_ACTION_OFFSET = "réglage";
+Blockly.Msg.mm_ACTION_FWRD = "avancer";
+Blockly.Msg.mm_ACTION_BWRD = "reculer";
+Blockly.Msg.mm_ACTION_LTRN = "tourner à gauche";
+Blockly.Msg.mm_ACTION_RTRN = "tourner à droite";
+Blockly.Msg.mm_ACTION_LEFT = "pas de côté à gauche";
+Blockly.Msg.mm_ACTION_RGHT = "pas de côté à droite";
+Blockly.Msg.mm_SERVO_DRIVE = "servomoteur";
+Blockly.Msg.mm_SERVO_CON = "broche";
+Blockly.Msg.mm_SERVO_ANGLE = "angle";
+Blockly.Msg.mm_ACTION_FREE = "action libre";
+Blockly.Msg.mm_ARRAY_CREATE_WITH = "objet";
+//20191010
+
+//////////////////////////// Peguino Blocks Text 2019 ////////////////////////////
+// ------------------------ Peguino input bricks ------------------------
+// Peguino Nano Board default wiring:
+// Port C1 = Pin 23 = D5; C2 = Pin 20 = D2; C3 = Pin 6 = A2; D1 = Pin 10 = A6; D2 = Pin 7 = A3; D3 = Pin 24 = D6;
+// Peguino ESP Board default wiring:
+// Port C1 = Pin 25 = GPIO27; C2 = Pin 15 = GPIO23; C3 = Pin 17 = GPIO36; D1 = Pin 21 = GPIO32; D2 = Pin 23 = GPIO25; D3 = Pin 22 = GPIO33;
+
+Blockly.Msg.Peguino_Bodysensor_TEXT = "capteur de mouvement";
+Blockly.Msg.Peguino_Bodysensor_TOOLTIP = "Avec cette brique Peguino, les mouvements sont détectés à proximité.";
+Blockly.Msg.Peguino_Bodysensor_PLUG = "connecteur";
+Blockly.Msg.Peguino_Bodysensor_UNIT = "port";
+Blockly.Msg.Peguino_Bodysensor_UNIT_CHOICE = [["?", "0"],["C1", "23"],  ["C2", "20"], ["C3", "6"],  ["D1", "10"], ["D2", "7"],  ["D3", "24"]];
+Blockly.Msg.Peguino_Bodysensor_HELPURL = "https://www.peguino.com/chat/thread-25.html";
+
+Blockly.Msg.Peguino_ProximityBrick_TEXT = "télémètre à ultrasons : connecteur A";
+Blockly.Msg.Peguino_ProximityBrick = "cm oder zoll";
+Blockly.Msg.Peguino_ProximityBrick_TOOLTIP = "Cette brique Peguino mesure la distance aux objets, en centimètres. Connecter au connecteur 'A'.";
+Blockly.Msg.Peguino_ProximityBrick_HELPURL = "https://www.peguino.com/chat/thread-18.html";
+
+Blockly.Msg.Peguino_ButtonBrick_TEXT = "bouton poussoir";
+Blockly.Msg.Peguino_ButtonBrick_TOOLTIP = "Cette brique Peguino est un interrupteur simple : tant qu’elle est enfoncée, le circuit est fermé.";
+Blockly.Msg.Peguino_ButtonBrick_INPUT = "connecteur";
+Blockly.Msg.Peguino_ButtonBrick_UNIT = "port";
+Blockly.Msg.Peguino_ButtonBrick_UNIT_CHOICE = [["?", "0"],["C1", "23"],  ["C2", "20"], ["C3", "6"],  ["D1", "10"], ["D2", "7"],  ["D3", "24"]];
+Blockly.Msg.Peguino_ButtonBrick_HELPURL = "https://www.peguino.com/chat/thread-21.html";
+
+Blockly.Msg.Peguino_PotiBrick_TEXT = "capteur angulaire (potentiomètre)";
+Blockly.Msg.Peguino_PotiBrick_TOOLTIP = "Cette brique Peguino est un potentiomètre : lorsque vous tournez, la résistance électrique change et génère ainsi différentes valeurs numériques.";
+Blockly.Msg.Peguino_PotiBrick_PLUG = "connecteur";
+Blockly.Msg.Peguino_PotiBrick_UNIT = "port";
+Blockly.Msg.Peguino_PotiBrick_UNIT_CHOICE = [["?", "0"], ["C3", "6"],  ["D1", "10"], ["D2", "7"]];
+Blockly.Msg.Peguino_PotiBrick_HELPURL = "https://www.peguino.com/chat/thread-14.html";
+
+Blockly.Msg.Peguino_Microprox_TEXT = "capteur de proximité";
+Blockly.Msg.Peguino_Microprox_TOOLTIP = "Cette brique Peguino détecte les différences de luminosité sur les surfaces et enregistre de courtes distances par réflexion de la lumière infrarouge.";
+Blockly.Msg.Peguino_Microprox_PLUG = "connecteur";
+Blockly.Msg.Peguino_Microprox_UNIT = "port";
+Blockly.Msg.Peguino_Microprox_UNIT_CHOICE = [["?", "0"], ["C3", "6"],  ["D1", "10"], ["D2", "7"]];
+Blockly.Msg.Peguino_Microprox_HELPURL = "https://www.peguino.com/chat/thread-15.html";
+
+Blockly.Msg.Peguino_ClimateBrick_TEXT = "température + humidité";
+Blockly.Msg.Peguino_ClimateBrick_TOOLTIP = "Cette brique Peguino fournit des données sur la température mesurée (en ° Celsius) et l’humidité (en %).";
+Blockly.Msg.Peguino_ClimateBrick_PLUG = "connecteur";
+Blockly.Msg.Peguino_ClimateBrick_UNIT = "port";
+Blockly.Msg.Peguino_ClimateBrick_CHOICENANO = [["?", "0"], ["C1", "23"], ["C2", "20"], ["D3", "24"]];
+Blockly.Msg.Peguino_ClimateBrick_CHOICEESP32 = [["?", "0"],["C1", "25"],  ["C2", "15"], ["C3", "17"],  ["D1", "21"], ["D2", "23"],  ["D3", "22"]];
+Blockly.Msg.Peguino_ClimateBrick_HELPURL = "https://www.peguino.com/chat/thread-26.html";
+Blockly.Msg.Peguino_ClimateBrick_DHT_READ_C = "Température °C";
+Blockly.Msg.Peguino_ClimateBrick_DHT_READ_H = "Humidité %";
+
+Blockly.Msg.PeguinoIRsender_TEXT = "émetteur infrarouge IR";
+Blockly.Msg.PeguinoIRsender_INPUT1 = "connecteur";
+Blockly.Msg.PeguinoIRsender_INPUT2 = "fréquence (Hz) 38000 ";
+Blockly.Msg.PeguinoIRsender_TOOLTIP = "Sendet Infrarotlicht in der gegebenen Frequenz aus.";
+Blockly.Msg.PeguinoIRsender_HELPURL = "https://www.peguino.com/chat/";
+
+Blockly.Msg.PeguinoIRreceiver_TEXT = "récepteur infrarouge IR";
+Blockly.Msg.PeguinoIRreceiver_INPUT = "Pin";
+Blockly.Msg.PeguinoIRreceiver_TOOLTIP = "Empfängt Signale im Infrarotlichtbereich.";
+Blockly.Msg.PeguinoIRreceiver_HELPURL = "https://www.peguino.com/chat/";
+
+Blockly.Msg.Peguino_Lightsensor_TEXT = "capteur de luminosité";
+Blockly.Msg.Peguino_Lightsensor_TOOLTIP = "Cette Brique Peguino détecte les différences de luminosité.";
+Blockly.Msg.Peguino_Lightsensor_PLUG = "connecteur";
+Blockly.Msg.Peguino_Lightsensor_UNIT = "port";
+Blockly.Msg.Peguino_Lightsensor_UNIT_CHOICE = [["?", "0"], ["C3", "6"],  ["D1", "10"], ["D2", "7"]];
+Blockly.Msg.Peguino_Lightsensor_HELPURL = "https://www.peguino.com/chat/thread-13.html";
+
+// ------------------------ Peguino output bricks ------------------------
+Blockly.Msg.Peguino_BuzzerBrick_TEXT = "avertisseur sonore (Buzzer)";
+Blockly.Msg.Peguino_BuzzerBrick_TOOLTIP = "cette brique Peguino fait des bruits simples.";
+Blockly.Msg.Peguino_BuzzerBrick_PLUG = "connecteur";
+Blockly.Msg.Peguino_BuzzerBrick_UNIT = "port";
+Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY = "son";
+Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_CHOICE = [["?", "0"],["Ton A", "440"],  ["2250 Hz", "2250"], ["3500 Hz", "3500"]];
+Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_UNIT  = "ton";
+Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_VALUE = "fréquence";
+Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME = "durée";
+Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_CHOICE = [["?", "0"], ["0,2 secondes", "200"], ["0,5 secondes", "500"],  ["1 seconde", "1000"]];
+Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_UNIT  = "seconde";
+Blockly.Msg.Peguino_BuzzerBrick_UNIT_CHOICE = [["?", "0"],["C1", "23"],  ["C2", "20"], ["C3", "6"],  ["D1", "10"], ["D2", "7"],  ["D3", "24"]];
+Blockly.Msg.Peguino_BuzzerBrick_HELPURL = "https://www.peguino.com/chat/thread-16.html";
+
+Blockly.Msg.Peguino_LED_TEXT = "DEL";
+Blockly.Msg.Peguino_LED_INPUT = "connecteur";
+Blockly.Msg.Peguino_LED_UNIT = "port";
+Blockly.Msg.Peguino_LED_STATUS = "status";
+Blockly.Msg.Peguino_LED_UNIT_CHOICE = [["?", "0"],["C1", "23"],  ["C2", "20"], ["C3", "6"],  ["D1", "10"], ["D2", "7"],  ["D3", "24"]];
+Blockly.Msg.Peguino_LED_TOOLTIP = "Ce dispositif génère de la lumière : en fonction du type de LED, par ex. en blanc, orange, rose, bleu ou une autre couleur.";
+Blockly.Msg.Peguino_LED_HELPURL = "https://www.peguino.com/chat/";
+
+Blockly.Msg.Peguino_RGBLED_TEXT = "DEL multicolore";
+Blockly.Msg.Peguino_RGBLED_UNIT = "port";
+Blockly.Msg.Peguino_RGBLED_STATUS = "status";
+Blockly.Msg.Peguino_RGBLED_INPUT = "broche";
+Blockly.Msg.Peguino_RGBLED_RGBCOLOR = "choisir une couleur:";
+Blockly.Msg.Peguino_RGBLED_RGBCOLORVALUE = "valeurs";
+Blockly.Msg.Peguino_RGBLED_RGBRED = "rouge";
+Blockly.Msg.Peguino_RGBLED_RGBGREEN = "vert";
+Blockly.Msg.Peguino_RGBLED_RGBBLUE = "bleu";
+Blockly.Msg.Peguino_RGBLED_TOOLTIP = "Ce bloc génère de la lumière (sur le port F) de différentes couleurs. La couleur peut être obtenue grâce aux trois couleurs de base : rouge, vert et bleu.";
+Blockly.Msg.Peguino_RGBLED_HELPURL = "https://www.peguino.com/chat/thread-19.html";
+
+Blockly.Msg.Peguino_I2CScan_TEXT = "I2C scanner d'adresse : connecteur B";
+Blockly.Msg.Peguino_I2CScan_TOOLTIP = "Cet élément permet au bus de données I2C sur le Connecteur B d’être analysé pour rechercher les adresses de périphérique connectés. Les adresses trouvées sont envoyées à l'interface série.";
+Blockly.Msg.Peguino_I2CScan_HELPURL = "https://www.peguino.com/chat/thread-20.html";
+
+Blockly.Msg.Peguino_AttachServo_TEXT = "attacher un servomoteur";
+Blockly.Msg.Peguino_AttachServo_TOOLTIP = "Ce module est utilisé pour connecter un servomoteur.";
+Blockly.Msg.Peguino_AttachServo_PLUG = "sur le connecteur";
+Blockly.Msg.Peguino_AttachServo_UNIT = "port";
+Blockly.Msg.Peguino_AttachServo_UNIT_CHOICE = [["?", "0"], ["C3", "6"],  ["D1", "10"], ["D2", "7"]];
+Blockly.Msg.Peguino_AttachServo_HELPURL = "https://www.peguino.com/chat/";
+Blockly.Msg.Peguino_SERVO_DEFAULT_NAME = "Servo1";
+
+
+//////////////////////////// Robobox Blocks Text 2019 ////////////////////////////
+
+Blockly.Msg.CAT_ROBOBOX = "Robobox";
+Blockly.Msg.ROBOBOX_ANGLE180 = "Angle [0~180°] :";
+Blockly.Msg.ROBOBOX_PIN = "Broche :";
+Blockly.Msg.ROBOBOX_TRIGGER_PIN = "Envoyer sur la broche :";
+Blockly.Msg.ROBOBOX_LISTEN_PIN = "Ecouter sur la broche :";
+Blockly.Msg.ROBOBOX_ARRAY = "Tableau :";
+Blockly.Msg.ROBOBOX_LEN = "Taille :";
+
+Blockly.Msg.CAT_ROBOBOX_SERVO = "- Servo-moteurs";
+Blockly.Msg.ROBOBOX_SERVO_SETANGLE = "changer l'angle";
+Blockly.Msg.ROBOBOX_SERVO_GETANGLE = "Lire l'angle";
+Blockly.Msg.ROBOBOX_SERVO_TOOLTIP = "Aide";
+
+Blockly.Msg.CAT_ROBOBOX_SENSORS = "- Capteurs";
+Blockly.Msg.ROBOBOX_SENSORS_ULTRASOUND = "Distance mesurée en cm";
+
+Blockly.Msg.CAT_ROBOBOX_IRREMOTE = "- IRremote";
+Blockly.Msg.ROBOBOX_IRREMOTE_DECODE = "Decode un signalIR";
+Blockly.Msg.ROBOBOX_IRREMOTE_SIGNALLEN = "Recuperer la taille du signal";
+Blockly.Msg.ROBOBOX_IRREMOTE_SIGNALARRAY = "Recuperer le signal";
+Blockly.Msg.ROBOBOX_IRREMOTE_SIGNALCODE = "Recuperer le code du signal";
+Blockly.Msg.ROBOBOX_IRREMOTE_RESUME = "Reprendre";
+Blockly.Msg.ROBOBOX_IRREMOTE_SEND = "Envoyer un signalIR";
+Blockly.Msg.ROBOBOX_IRREMOTE_SENDARRAY = "Envoyer un signalIR";
+
+Blockly.Msg.CAT_ROBOBOX_MONTH4 = "- Voiture Robobox";
+Blockly.Msg.ROBOBOX_MONTH4_INIT = "Connection des moteurs";
+Blockly.Msg.ROBOBOX_MONTH4_MOVE = "Avancer";
+Blockly.Msg.ROBOBOX_MONTH4_MOVEBACKWARD = "Reculer";
+Blockly.Msg.ROBOBOX_MONTH4_TURNRIGHT = "Tourner à droite";
+Blockly.Msg.ROBOBOX_MONTH4_TURNLEFT = "Tourner à gauche";
+
+Blockly.Msg.CAT_ROBOBOX_MONTH6 = "- La lumiere";
+Blockly.Msg.ROBOBOX_MONTH6_LINEC = "Recuperer la ligne centrale";
+Blockly.Msg.ROBOBOX_MONTH6_LINED = "Recuperer la ligne de droite";
+Blockly.Msg.ROBOBOX_MONTH6_LINEG = "Recuperer la ligne de gauche";
+Blockly.Msg.ROBOBOX_MONTH6_CALCANGLE = "Calculer l'angle";
+
+Blockly.Msg.CAT_ROBOBOX_MONTH8 = "- La moto";
+Blockly.Msg.ROBOBOX_MONTH8_ANALYZE = "Analyser un signal";
+
+//////////////////////////// Virtuino 08/05/2020 ////////////////////////////
+Blockly.Msg.VIRTUINO_INIT_TEXT = "initialisation de la connexion :";
+Blockly.Msg.VIRTUINO_INIT_RX = "Broche RX";
+Blockly.Msg.VIRTUINO_INIT_TX = "Broche TX";
+Blockly.Msg.VIRTUINO_INIT_SPEED = "Vitesse";
+Blockly.Msg.VIRTUINO_DV_TEXT = "recevoir un état";
+Blockly.Msg.VIRTUINO_DV_INPUT = "sur le canal virtuel (DV)";
+Blockly.Msg.VIRTUINO_TOOLTIP = "utilisation de Virtuino, voir l'aide";
+Blockly.Msg.VIRTUINO_HELP = "https://youtu.be/v1mQ0VC6szw";
+
+
+
+//
+Blockly.Msg.CAT_RTC = "RTC DS3231";
+Blockly.Msg.CAT_SSD1306 = "Adafruit SSD1306";
+Blockly.Msg.CAT_SSD1306_MAIN = "principal";
+Blockly.Msg.CAT_SSD1306_DRAW = "dessin";
+Blockly.Msg.CAT_SSD1306_TEXT = "texte";
+Blockly.Msg.CAT_LORA = "LoRa";
+
+Blockly.Msg.LORA_INIT = 'LoRa - initialisation';
+Blockly.Msg.LORA_FREQ = 'fréquence';
+Blockly.Msg.LORA_FREQ_DROPDOWN = [["915 MHz","915E6"],["868 MHz","868E6"],["433 MHz","433E6"]];
+Blockly.Msg.LORA_RESET_PIN = 'broche de réinitialisation';
+Blockly.Msg.LORA_RESET_PIN_DROPDOWN = [["9 (défaut)","10"],["-1 (pas utilisé)","-1"]];
+Blockly.Msg.LORA_SS_PIN = 'broche de sélection de puce SPI';
+Blockly.Msg.LORA_SS_PIN_DROPDOWN = [["10 (défaut)","10"]];
+Blockly.Msg.LORA_DIO0_PIN = 'broche DIO0';
+Blockly.Msg.LORA_DIO0_PIN_DROPDOWN = [["2 (défaut)","2"]];
+Blockly.Msg.LORA_SPI_FREQ = 'fréquence SPI';
+Blockly.Msg.LORA_SPI_FREQ_DROPDOWN = [["8 MHz (défaut)","8E6"]];
+
+Blockly.Msg.LORA_END = 'fin';
+Blockly.Msg.LORA_ONRECEIVE = 'dès réception';
+Blockly.Msg.LORA_ONTXDONE = 'après transmission';
+Blockly.Msg.LORA_BEGINPACKET = 'paquet commence';
+Blockly.Msg.LORA_IMPLICIT_HEADER = 'en-tête implicite';
+Blockly.Msg.LORA_ENDPACKET = 'fin de paquet';
+Blockly.Msg.LORA_ASYNC = 'asynchrone';
+Blockly.Msg.LORA_PRINT = 'imprime';
+Blockly.Msg.LORA_WRITE_BYTE = 'écrire octet';
+Blockly.Msg.LORA_CHARACTER = 'charactère';
+Blockly.Msg.LORA_WRITE_BUFFER = 'écrire dans le buffer';
+Blockly.Msg.LORA_AVAILABLE = 'disponible';
+Blockly.Msg.LORA_PARSE_PACKET = 'parcourir le paquet';
+Blockly.Msg.LORA_SIZE = 'taille';
+Blockly.Msg.LORA_RECEIVE = 'recevoir';
+Blockly.Msg.LORA_PACKET_RSSI = 'intensité de signal reçu (RSSI) du paquet ';
+Blockly.Msg.LORA_PACKET_SNR = 'rapport signal-bruit (SNR) de paquets';
+Blockly.Msg.LORA_PACKET_FREQUENCY_ERROR = 'erreur de fréquence du paquet';
+Blockly.Msg.LORA_PEEK = 'aperçu';
+Blockly.Msg.LORA_READ = 'lire';
+Blockly.Msg.LORA_IDLE = 'inoccupé';
+Blockly.Msg.LORA_SLEEP = 'veille';
+Blockly.Msg.LORA_SET_TX_POWER = 'puissance de transmission';
+Blockly.Msg.LORA_TX_POWER_LEVEL = 'niveau';
+Blockly.Msg.LORA_OUTPUT_PIN_DROPDOWN = [["PA boost","PA_OUTPUT_PA_BOOST_PIN"],["RF0","PA_OUTPUT_RFO_PIN"]];
+Blockly.Msg.LORA_OUTPUT_PIN = 'broche de sortie';
+Blockly.Msg.LORA_SET_SPREAD_FACTOR = 'facteur d\'étalement';
+Blockly.Msg.LORA_SPREAD_DROPDOWN = [["6","6"],["7","7"],["8","8"],["9","9"],["10","10"],["11","11"],["12","12"]];
+Blockly.Msg.LORA_SPREAD = 'valeur d\'étalement';
+Blockly.Msg.LORA_SET_SIGNAL_BANDWIDTH = 'définir la bande passante';
+Blockly.Msg.LORA_BANDWIDTH_DROPDOWN = [["7.8 kHz","7.8E3"],["10.4 kHz","10.4E3"],["15.6 kHz","15.6E3"],["20.8 kHz","20.8E3"],["31.25 kHz","31.25E3"],["41.7 kHz","41.7E3"],["62.5 kHz","62.5E3"],["125 kHz","125E3"],["250 kHz","250E3"],["500 kHz","500E36"]];
+Blockly.Msg.LORA_BANDWIDTH = 'bande passante';
+Blockly.Msg.LORA_SET_CODING_RATE = 'vitesse d\'encodage';
+Blockly.Msg.LORA_CODING_RATE_DROPDOWN = [["4/5","5"],["4/6","6"],["4/7","7"],["4/8","8"]];
+Blockly.Msg.LORA_CODING_RATE = 'vitesse d\'encodage';
+Blockly.Msg.LORA_SET_PREAMBLE = 'préambule';
+Blockly.Msg.LORA_LENGTH = "longueur";
+Blockly.Msg.LORA_SET_SYNC_WORD = 'mot de synchronisation';
+Blockly.Msg.LORA_WORD = "mot";
+Blockly.Msg.LORA_ENABLE_CRC = 'activer contrôle de redondance cyclique hiérarchique (CRC)';
+Blockly.Msg.LORA_DISABLE_CRC = 'désactiver contrôle de redondance cyclique hiérarchique (CRC)';
+Blockly.Msg.LORA_ENABLE_INVERT_IQ = 'activer inversion IQ';
+Blockly.Msg.LORA_DISABLE_INVERT_IQ = 'désactiver inversion IQ';
+Blockly.Msg.LORA_RANDOM = 'aléatoire';
+
+Blockly.Msg.LORA_INIT_TOOLTIP = 'Initialise LoRa';
+Blockly.Msg.LORA_END_TOOLTIP = 'fin';
+Blockly.Msg.LORA_ONRECEIVE_TOOLTIP = 'on receive';
+Blockly.Msg.LORA_ONTXDONE_TOOLTIP = 'on transmit done';
+Blockly.Msg.LORA_BEGINPACKET_TOOLTIP = 'begin packet';
+Blockly.Msg.LORA_IMPLICIT_HEADER_TOOLTIP = 'implicit header';
+Blockly.Msg.LORA_ENDPACKET_TOOLTIP = 'end packet';
+Blockly.Msg.LORA_ASYNC_TOOLTIP = 'async';
+Blockly.Msg.LORA_PRINT_TOOLTIP = 'print';
+Blockly.Msg.LORA_WRITE_BYTE_TOOLTIP = 'write byte';
+Blockly.Msg.LORA_WRITE_BUFFER_TOOLTIP = 'write buffer';
+Blockly.Msg.LORA_AVAILABLE_TOOLTIP = 'available';
+Blockly.Msg.LORA_PARSE_PACKET_TOOLTIP = 'parse packet';
+Blockly.Msg.LORA_RECEIVE_TOOLTIP = 'receive';
+Blockly.Msg.LORA_PACKET_RSSI_TOOLTIP = 'packet RSSI';
+Blockly.Msg.LORA_PACKET_SNR_TOOLTIP = 'packet SNR';
+Blockly.Msg.LORA_PACKET_FREQUENCY_ERROR_TOOLTIP = 'packet frequency error';
+Blockly.Msg.LORA_PEEK_TOOLTIP = 'peek';
+Blockly.Msg.LORA_READ_TOOLTIP = 'read';
+Blockly.Msg.LORA_IDLE_TOOLTIP = 'idle';
+Blockly.Msg.LORA_SLEEP_TOOLTIP = 'sleep';
+Blockly.Msg.LORA_SET_TX_POWER_TOOLTIP = 'set transmit power';
+Blockly.Msg.LORA_TX_POWER_LEVEL_TOOLTIP = 'level';
+Blockly.Msg.LORA_SET_SPREAD_FACTOR_TOOLTIP = 'set spread factor';
+Blockly.Msg.LORA_SET_SIGNAL_BANDWIDTH_TOOLTIP = 'set signal bandwidth';
+Blockly.Msg.LORA_SET_CODING_RATE_TOOLTIP = 'set coding rate';
+Blockly.Msg.LORA_SET_PREAMBLE_TOOLTIP = 'set preamble';
+Blockly.Msg.LORA_SET_SYNC_WORD_TOOLTIP = 'set sync';
+Blockly.Msg.LORA_ENABLE_CRC_TOOLTIP = 'enable CRC';
+Blockly.Msg.LORA_DISABLE_CRC_TOOLTIP = 'disable CRC';
+Blockly.Msg.LORA_ENABLE_INVERT_IQ_TOOLTIP = 'enable invert IQ';
+Blockly.Msg.LORA_DISABLE_INVERT_IQ_TOOLTIP = 'disable invert IQ';
+Blockly.Msg.LORA_RANDOM_TOOLTIP = 'random';
+Blockly.Msg.LORA_HELPURL = 'https://github.com/sandeepmistry/arduino-LoRa/blob/master/API.md';
+
+//////////////////////////// Grove Beginner Kit 12/09//2020 ////////////////////////////
+Blockly.Msg.GROVE_BK_HELPURL = 'https://wiki.seeedstudio.com/Grove-Beginner-Kit-For-Arduino/';
+Blockly.Msg.GROVE_BK_INOUT_LED_INPUT1 = Blockly.Msg.GROVE_INOUT_LED_INPUT1;
+Blockly.Msg.GROVE_BK_INOUT_LED_INPUT3 = Blockly.Msg.GROVE_INOUT_LED_INPUT3;
+Blockly.Msg.GROVE_BK_INOUT_LED_TOOLTIP = Blockly.Msg.GROVE_INOUT_LED_TOOLTIP;
+Blockly.Msg.GROVE_BK_INOUT_BUZZER_TEXT1 = Blockly.Msg.GROVE_INOUT_BUZZER_TEXT1;
+Blockly.Msg.GROVE_BK_INOUT_BUZZER_TEXT2 = Blockly.Msg.GROVE_INOUT_BUZZER_TEXT2;
+Blockly.Msg.GROVE_BK_INOUT_BUZZER_TOOLTIP = Blockly.Msg.GROVE_INOUT_BUZZER_TOOLTIP;
+Blockly.Msg.GROVE_BK_OUT_BUZZER_TEXT1 = "jouer un son sur le buzzer";
+Blockly.Msg.GROVE_BK_OUT_BUZZER_TEXT2 = "fréquence";
+Blockly.Msg.GROVE_BK_OUT_BUZZER_TEXT3 = "scale";
+Blockly.Msg.GROVE_BK_OUT_BUZZER_TEXT4 = "durée";
+Blockly.Msg.GROVE_BK_OLED_TEXT1 = "écrire sur l'écran OLED";
+Blockly.Msg.GROVE_BK_OLED_TEXT2 = "information (texte ou nombre)";
+Blockly.Msg.GROVE_BK_OLED_TEXT3 = "ligne (0~3)";
+Blockly.Msg.GROVE_BK_OLED_TEXT4 = "colonne (0~15)";
+Blockly.Msg.GROVE_BK_OLED_TEXT5 = "rafraîchissement";
+Blockly.Msg.GROVE_BK_OLED_TEXT = Blockly.Msg.lp2i_u8g_draw_string_Text;
+Blockly.Msg.GROVE_BK_OLED_DRAW_STRING_X = Blockly.Msg.lp2i_u8g_draw_string_X;
+Blockly.Msg.GROVE_BK_OLED_DRAW_STRING_Y = Blockly.Msg.lp2i_u8g_draw_string_Y;
+Blockly.Msg.GROVE_BK_OLED_TOOLTIP = 'affichage sur l\'écran OLED';
+Blockly.Msg.GROVE_BK_OLED_DRAW_4STRINGS_TEXT = Blockly.Msg.lp2i_u8g_draw_4strings_texts_to_display;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4STRINGS_TEXT_LINE1 = Blockly.Msg.lp2i_u8g_draw_4strings_Text_line1;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4STRINGS_TEXT_LINE2 = Blockly.Msg.lp2i_u8g_draw_4strings_Text_line2;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4STRINGS_TEXT_LINE3 = Blockly.Msg.lp2i_u8g_draw_4strings_Text_line3;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4STRINGS_TEXT_LINE4 = Blockly.Msg.lp2i_u8g_draw_4strings_Text_line4;
+Blockly.Msg.GROVE_BK_OLED_PRINT_N = Blockly.Msg.lp2i_u8g_print_N;
+Blockly.Msg.GROVE_BK_OLED_PRINT_X = Blockly.Msg.lp2i_u8g_print_X;
+Blockly.Msg.GROVE_BK_OLED_PRINT_Y = Blockly.Msg.lp2i_u8g_print_Y;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_TEXT = Blockly.Msg.lp2i_u8g_4draw_print_to_display;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_TEXT_LINE1 = Blockly.Msg.lp2i_u8g_4draw_print_Text_line1;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_TEXT_LINE2 = Blockly.Msg.lp2i_u8g_4draw_print_Text_line2;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_TEXT_LINE3 = Blockly.Msg.lp2i_u8g_4draw_print_Text_line3;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_TEXT_LINE4 = Blockly.Msg.lp2i_u8g_4draw_print_Text_line4;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_PRINT_N1 = Blockly.Msg.lp2i_u8g_4draw_print_N1;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_PRINT_N2 = Blockly.Msg.lp2i_u8g_4draw_print_N2;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_PRINT_N3 = Blockly.Msg.lp2i_u8g_4draw_print_N3;
+Blockly.Msg.GROVE_BK_OLED_DRAW_4DRAW_PRINT_N4 = Blockly.Msg.lp2i_u8g_4draw_print_N4;
+Blockly.Msg.GROVE_BK_INOUT_BUTTON_TEXT = Blockly.Msg.GROVE_INOUT_BUTTON_TEXT;
+Blockly.Msg.GROVE_BK_INOUT_BUTTON_TOOLTIP = Blockly.Msg.GROVE_INOUT_BUTTON_TOOLTIP;
+Blockly.Msg.GROVE_BK_INOUT_ROT_ANGLE_TEXT = Blockly.Msg.GROVE_INOUT_ROT_ANGLE_TEXT;
+Blockly.Msg.GROVE_BK_INOUT_ROT_ANGLE_TOOLTIP = Blockly.Msg.GROVE_INOUT_ROT_ANGLE_TOOLTIP;
+Blockly.Msg.GROVE_BK_INOUT_LDR_TEXT = Blockly.Msg.GROVE_INOUT_LDR_TEXT;
+Blockly.Msg.GROVE_BK_INOUT_LDR_TOOLTIP = Blockly.Msg.GROVE_INOUT_LDR_TOOLTIP;
+Blockly.Msg.GROVE_BK_INOUT_SOUND_TEXT = Blockly.Msg.GROVE_INOUT_SOUND_TEXT;
+Blockly.Msg.GROVE_BK_INOUT_SOUND_TOOLTIP = Blockly.Msg.GROVE_INOUT_SOUND_TOOLTIP;
+Blockly.Msg.GROVE_BK_INOUT_DHT_READ_TYPE = Blockly.Msg.GROVE_INOUT_DHT_READ_TYPE;
+Blockly.Msg.GROVE_BK_INOUT_DHT_READ_H = Blockly.Msg.GROVE_INOUT_DHT_READ_H;
+Blockly.Msg.GROVE_BK_INOUT_DHT_READ_C = Blockly.Msg.GROVE_INOUT_DHT_READ_C;
+Blockly.Msg.GROVE_BK_INOUT_DHT_READ_SENSOR = Blockly.Msg.GROVE_INOUT_DHT_READ_SENSOR;
+Blockly.Msg.GROVE_BK_INOUT_DHT_READ_TOOLTIP = Blockly.Msg.GROVE_INOUT_DHT_READ_TOOLTIP;
+Blockly.Msg.GROVE_BK_INOUT_PRESSURE_TEXT = 'valeur';
+Blockly.Msg.GROVE_BK_INOUT_PRESSURE_TEXT_T = 'de température mesurée (°C)';
+Blockly.Msg.GROVE_BK_INOUT_PRESSURE_TEXT_P = 'de pression mesurée (Pa)';
+Blockly.Msg.GROVE_BK_INOUT_PRESSURE_TEXT_A = 'd\'altitude calculée (m)';
+Blockly.Msg.GROVE_BK_INOUT_PRESSURE_TOOLTIP = 'donne la valeur mesurée de température et de pression, et en calcule l\'altitude';
+Blockly.Msg.GROVE_BK_INOUT_GYRO_TEXT1 = 'valeur de l\'accélération';
+Blockly.Msg.GROVE_BK_INOUT_GYRO_TEXT2 = 'sur l\'axe';
+Blockly.Msg.GROVE_BK_INOUT_GYRO_TOOLTIP = "renvoie les valeurs d\'accélération dans les 3 dimensions";

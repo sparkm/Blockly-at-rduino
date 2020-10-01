@@ -28,762 +28,307 @@ goog.provide('Blockly.Arduino.peguino_actuators');
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino.grove_led = function() {
-  var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
-  var dropdown_stat = this.getFieldValue('STAT');
-  Blockly.Arduino.setups_['setup_grove_led_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
-  var code = 'digitalWrite('+dropdown_pin+','+dropdown_stat+');\n';
+Blockly.Arduino.peguino_actuators_buzzer = function() {
+  var dropdown_pin = this.getFieldValue(Blockly.Msg.Peguino_BuzzerBrick_UNIT);
+  var in_frequency = this.getFieldValue(Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_UNIT);
+  var in_playtime = this.getFieldValue(Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_UNIT);
+  var code = 'tone('+dropdown_pin+','+in_frequency+','+in_playtime+')';
   return code;
 };
 
-Blockly.Arduino.grove_button = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  Blockly.Arduino.setups_['setup_button_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
-  var code = 'digitalRead('+dropdown_pin+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_rotary_angle = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var code = 'analogRead('+dropdown_pin.substring(1,2)+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_ldr = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var code = 'analogRead('+dropdown_pin.substring(1,2)+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_tilt_switch = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  Blockly.Arduino.setups_['setup_tilt_switch_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
-  var code = 'digitalRead('+dropdown_pin+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_piezo_buzzer = function() {
-  var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
-  var dropdown_stat = this.getFieldValue('STAT');
-  Blockly.Arduino.setups_['setup_piezo_buzzer_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
-  var code = 'digitalWrite('+dropdown_pin+','+dropdown_stat+');\n';
+Blockly.Arduino.peguino_actuators_buzzer2 = function() {
+  var dropdown_pin = this.getFieldValue(Blockly.Msg.Peguino_BuzzerBrick_UNIT);
+  var in_frequency = this.getFieldValue('Number'); //this.getFieldValue(Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_VALUE);
+  var in_playtime = this.getFieldValue(Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_UNIT);
+  var code = 'tone('+dropdown_pin+','+in_frequency+','+in_playtime+')';
   return code;
 };
 
-Blockly.Arduino.grove_relay = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var dropdown_stat = this.getFieldValue('STAT');
-  Blockly.Arduino.setups_['setup_relay_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
-  var code = 'digitalWrite('+dropdown_pin+','+dropdown_stat+');\n';
+
+Blockly.Arduino.peguino_actuators_led = function() {
+  var dropdown_pin = this.getFieldValue(Blockly.Msg.Peguino_LED_UNIT); 
+  var led_status = this.getFieldValue(Blockly.Msg.Peguino_LED_STATUS);
+  Blockly.Arduino.setups_['setup_button_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
+  var code = 'digitalWrite('+dropdown_pin+','+led_status+');\n';
   return code;
 };
 
-Blockly.Arduino.grove_temporature_sensor = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  /*
-  a=analogRead(0);
-  resistance=(float)(1023-a)*10000/a;
-  temperature=1/(log(resistance/10000)/B+1/298.15)-273.15;
-  */
-  var code = 'round( 1/(log((float)(1023-analogRead('+dropdown_pin.substring(1,2)+'))*10000/analogRead('+dropdown_pin.substring(1,2)+')/10000)/3975+1/298.15)-273.15'+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+// Peguino Nano RGB LED Red = Pin D12, Green = Pin D11, Blue = Pin D13 
+Blockly.Arduino.peguino_actuators_rgbled = function() {
+	var dropdown_pin = this.getFieldValue(Blockly.Msg.Peguino_RGBLED_STATUS);
+	var red_value = '255';	// The Peguino RGB LED Brick contains a common anode. To switch if off, all values have to be set to 255. 0 = maximum light
+	var green_value = '255';
+	var blue_value = '255';
+	var color_value = this.getFieldValue(Blockly.Msg.Peguino_RGBLED_RGBCOLORVALUE);
+    var hex = color_value.replace('#','');
+    var redinput = parseInt(hex.substring(0,2), 16);
+    var greeninput = parseInt(hex.substring(2,4), 16);
+    var blueinput = parseInt(hex.substring(4,6), 16);
+	var redvalue = redinput - 255; 
+	var red_value = Math.abs(redvalue);
+	var greenvalue = greeninput - 255; 
+	var green_value = Math.abs(greenvalue);
+	var bluevalue = blueinput - 255; 
+	var blue_value = Math.abs(bluevalue);
+	var returncode = ' analogWrite(12,'+red_value+');\n analogWrite(11,'+green_value+');\n analogWrite(13,'+blue_value+');\n ';
+	Blockly.Arduino.setups_['setup_RGBLED'] = "pinMode(12, OUTPUT);\n pinMode(11, OUTPUT);\n pinMode(13, OUTPUT);\n "
+	return returncode;
 };
 
-Blockly.Arduino.grove_moisture_sensor = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var code = 'analogRead('+dropdown_pin.substring(1,2)+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+Blockly.Arduino.peguino_actuators_i2c_scan = function() {	
+	Blockly.Arduino.includes_['define_lcd_i2c_lcdscan'] = '#include <Wire.h>';
+	Blockly.Arduino.setups_['setup_lcd_i2c_lcdscan'] = "Serial.begin (115200);\n" +
+	"  // Leonardo: wait for serial port to connect\n" +
+	"  while (!Serial)\n" +
+	"    {\n" +
+	"    }\n" +
+	"  Serial.println();\n" +
+	"  Serial.println('I2C scanner. Scanning ...');\n" +
+	"  byte count = 0;\n" +
+	"\n" + 
+	"  Wire.begin();\n" +
+	"  for (byte i = 8; i < 120; i++)\n" +
+	"    {\n" +
+	"	 Wire.beginTransmission (i);\n" +
+	"	 if (Wire.endTransmission () == 0)\n" +
+	"	   {\n" +
+	"	   Serial.print ('Found address: ');\n" +
+	"	   Serial.print (i, DEC);\n" +
+	"	   Serial.print (' (0x');\n" +
+	"	   Serial.print (i, HEX);\n" +
+	"	   Serial.println (')');\n" +
+	"	   count++;\n" +
+	"	   delay (1);\n" +
+	"	   } // end of good response\n" +
+	"    } // end of for loop\n" +
+	"  Serial.println ('Done.');\n" +
+	"  Serial.print ('Found ');\n" +
+	"  Serial.print (count, DEC);\n" +
+	"  Serial.println (' device(s).');\n";
+	var code = '';	
+	return code;
 };
 
-/*
-#include <SerialLCD.h>
-#include <SoftwareSerial.h> //this is a must
-SerialLCD slcd(11,12);//this is a must, assign soft serial pins
-
-void setup()
-{
-  slcd.begin();// set up :
-}
-
-void loop()
-{
-  slcd.backlight();// Turn on the backlight: //noBacklight
-  slcd.setCursor(0,0); // set the cursor to (0,0):
-  slcd.print("  Seeed Studio"); // Print a message to the LCD.
-  slcd.setCursor(0,1); //line 2
-  slcd.print("   Starter kit   ");
-  delay(5000);
-  //slcd.scrollDisplayLeft();//scrollDisplayRight/autoscroll/
-  //slcd.clear();
-  //Power/noPower
-}
-*/
-
-var _get_next_pin = function(dropdown_pin) {
-  var pos = -1;
-    //check if NextPIN in bound
-  if(parseInt(dropdown_pin)){
-    var NextPIN = parseInt(dropdown_pin)+1;
-    pos = profile.defaultBoard.digital.indexOf(String(NextPIN));
-  } else {
-    var NextPIN = 'A'+(parseInt(dropdown_pin.slice(1,dropdown_pin.length))+1);
-    pos = profile.defaultBoard.analog.indexOf(String(NextPIN));
+Blockly.Arduino.peguino_actuators_i2c_lcdinit = function() {
+  var dropdown_I2C_adress = this.getFieldValue('I2C_adress');
+  var dropdown_nbcol = this.getFieldValue('nbcol');
+  var dropdown_nblig = this.getFieldValue('nblig');
+  var dropdown_cursor = this.getFieldValue('cursor');
+  var dropdown_blink = this.getFieldValue('blink');
+  var dropdown_backlight = this.getFieldValue('backlight');
+  Blockly.Arduino.includes_['define_Wire'] = '#include <Wire.h>';
+  Blockly.Arduino.includes_['define_LiquidCrystal_I2C'] = '#include <LiquidCrystal_I2C.h>';
+  Blockly.Arduino.definitions_['var_lcd'] = 'LiquidCrystal_I2C lcd('+dropdown_I2C_adress+', '+dropdown_nbcol+', '+dropdown_nblig+');';
+  var mysetup='lcd.init();\n';
+  if (dropdown_backlight=="TRUE")
+  {
+    mysetup+='  lcd.backlight();\n';
+  } else
+  {
+    mysetup+='  lcd.noBacklight();\n';
   }
-  if(pos < 0){
-//    alert("Grove Sensor needs PIN#+1 port, current setting is out of bound.");
-    return null;
-  } else {
-    return NextPIN;
+  if (dropdown_cursor=="TRUE")
+  {
+    mysetup+='  lcd.cursor();\n';
+  } else
+  {
+    mysetup+='  lcd.noCursor();\n';
   }
+  if (dropdown_blink=="TRUE")
+  {
+    mysetup+='  lcd.blink();\n';
+  } else
+  {
+    mysetup+='  lcd.noBlink();\n';
+  }
+  Blockly.Arduino.setups_['setup_lcd'] = mysetup;
+  var code="";
+  return code;
 };
 
-Blockly.Arduino.grove_serial_lcd_print = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
+Blockly.Arduino.peguino_actuators_i2c_lcdwrite = function() {
   var text = Blockly.Arduino.valueToCode(this, 'TEXT',
       Blockly.Arduino.ORDER_UNARY_POSTFIX) || '\'\'';
-  var text2 = Blockly.Arduino.valueToCode(this, 'TEXT2',
-      Blockly.Arduino.ORDER_UNARY_POSTFIX) || '\'\'';
-  var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC) || '1000';
-  /*if(text.length>16||text2.length>16){
-      alert("string is too long");
-  }*/
-  Blockly.Arduino.includes_['define_seriallcd'] = '#include <SerialLCD.h>\n';
-  Blockly.Arduino.includes_['define_softwareserial'] = '#include <SoftwareSerial.h>\n';
-  //generate PIN#+1 port
-  var NextPIN = _get_next_pin(dropdown_pin);
-
-  Blockly.Arduino.definitions_['var_lcd_'+dropdown_pin] = 'SerialLCD slcd_'+dropdown_pin+'('+dropdown_pin+','+NextPIN+');\n';
-
-  Blockly.Arduino.setups_['setup_lcd_'+dropdown_pin] = 'slcd_'+dropdown_pin+'.begin();\n';
-  var code = 'slcd_'+dropdown_pin+'.backlight();\n';
-  code    += 'slcd_'+dropdown_pin+'.setCursor(0,0);\n';
-  code    += 'slcd_'+dropdown_pin+'.print('+text+');\n';//text.replace(new RegExp('\'',"gm"),'')
-  code    += 'slcd_'+dropdown_pin+'.setCursor(0,1);\n';
-  code    += 'slcd_'+dropdown_pin+'.print('+text2+');\n';
-  code    += 'delay('+delay_time+');\n';
+  var dropdown_col = Blockly.Arduino.valueToCode(this, 'COL',
+      Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
+  var dropdown_lig = Blockly.Arduino.valueToCode(this, 'LIG',
+      Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';    
+  var code = 'lcd.setCursor('+dropdown_col+','+dropdown_lig+');\n'+
+  'lcd.print('+text+');\n';
   return code;
 };
 
-Blockly.Arduino.grove_serial_lcd_power = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var dropdown_stat = this.getFieldValue('STAT');
-
-  Blockly.Arduino.includes_['define_seriallcd'] = '#include <SerialLCD.h>\n';
-  Blockly.Arduino.includes_['define_softwareserial'] = '#include <SoftwareSerial.h>\n';
-  //generate PIN#+1 port
-  var NextPIN = _get_next_pin(dropdown_pin);
-
-  Blockly.Arduino.definitions_['var_lcd'+dropdown_pin] = 'SerialLCD slcd_'+dropdown_pin+'('+dropdown_pin+','+NextPIN+');\n';
-  var code = 'slcd_'+dropdown_pin;
-  if(dropdown_stat==="ON"){
-    code += '.Power();\n';
-  } else {
-    code += '.noPower();\n';
-  }
+Blockly.Arduino.peguino_actuators_i2c_lcdclear = function() {
+  var code = 'lcd.clear();\n';
   return code;
 };
 
-Blockly.Arduino.grove_serial_lcd_effect = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var dropdown_stat = this.getFieldValue('STAT');
-
-  Blockly.Arduino.includes_['define_seriallcd'] = '#include <SerialLCD.h>\n';
-  Blockly.Arduino.includes_['define_softwareserial'] = '#include <SoftwareSerial.h>\n';
-  //generate PIN#+1 port
-  var NextPIN = _get_next_pin(dropdown_pin);
-
-  Blockly.Arduino.definitions_['var_lcd'+dropdown_pin] = 'SerialLCD slcd_'+dropdown_pin+'('+dropdown_pin+','+NextPIN+');\n';
-  var code = 'slcd_'+dropdown_pin;
-  if(dropdown_stat==="LEFT"){
-    code += '.scrollDisplayLeft();\n';
-  } else if(dropdown_stat==="RIGHT"){
-    code += '.scrollDisplayRight();\n';
-  } else {
-    code += '.autoscroll();\n';
-  }
-  return code;
-};
-
-Blockly.Arduino.grove_sound_sensor = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var code = 'analogRead('+dropdown_pin.substring(1,2)+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_pir_motion_sensor = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  Blockly.Arduino.setups_['setup_input_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
-  var code = 'digitalRead('+dropdown_pin+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_line_finder = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  Blockly.Arduino.setups_['setup_input_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
-  var code = 'digitalRead('+dropdown_pin+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_ultrasonic_ranger = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var dropdown_unit = this.getFieldValue('UNIT');
-  Blockly.Arduino.includes_['define_ultrasonic'] = '#include <Ultrasonic.h>\n';
-  Blockly.Arduino.definitions_['var_ultrasonic'+dropdown_pin] = 'Ultrasonic ultrasonic_'+dropdown_pin+'('+dropdown_pin+');\n';
-  var code;
-  if(dropdown_unit==="cm"){
-    code = 'ultrasonic_'+dropdown_pin+'.MeasureInCentimeters()';
-  } else {
-    code = 'ultrasonic_'+dropdown_pin+'.MeasureInInches()';
-  }
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_motor_shield = function() {
-  var dropdown_direction = this.getFieldValue('DIRECTION');
-  var speed = 127;//Blockly.Arduino.valueToCode(this, 'SPEED', Blockly.Arduino.ORDER_ATOMIC) || '127';
-  Blockly.Arduino.setups_["setup_motor"] = "pinMode(8,OUTPUT);//I1\n"+
-  "  pinMode(11,OUTPUT);//I2\n"+
-  "  pinMode(9,OUTPUT);//speedPinA\n"+
-  "  pinMode(12,OUTPUT);//I3\n"+
-  "  pinMode(13,OUTPUT);//I4\n"+
-  "  pinMode(10,OUTPUT);//speedPinB\n";
-  var code = "";
-  if(dropdown_direction==="forward"){
-    Blockly.Arduino.definitions_['define_forward'] = "void forward()\n"+
-"{\n"+
-     "  analogWrite(9,"+speed+");//input a simulation value to set the speed\n"+
-     "  analogWrite(10,"+speed+");\n"+
-     "  digitalWrite(13,HIGH);//turn DC Motor B move clockwise\n"+
-     "  digitalWrite(12,LOW);\n"+
-     "  digitalWrite(11,LOW);//turn DC Motor A move anticlockwise\n"+
-     "  digitalWrite(8,HIGH);\n"+
-"}\n";
-    code="forward();\n";
-  } else if (dropdown_direction==="right") {
-    Blockly.Arduino.definitions_['define_right'] = "void right()\n"+
-"{\n"+
-     "  analogWrite(9,"+speed+");//input a simulation value to set the speed\n"+
-     "  analogWrite(10,"+speed+");\n"+
-     "  digitalWrite(13,LOW);//turn DC Motor B move anticlockwise\n"+
-     "  digitalWrite(12,HIGH);\n"+
-     "  digitalWrite(11,LOW);//turn DC Motor A move anticlockwise\n"+
-     "  digitalWrite(8,HIGH);\n"+
-"}\n\n";
-    code="right();\n";
-  } else if (dropdown_direction==="left") {
-    Blockly.Arduino.definitions_['define_left'] = "void left()\n"+
-"{\n"+
-     "  analogWrite(9,"+speed+");//input a simulation value to set the speed\n"+
-     "  analogWrite(10,"+speed+");\n"+
-     "  digitalWrite(13,HIGH);//turn DC Motor B move clockwise\n"+
-     "  digitalWrite(12,LOW);\n"+
-     "  digitalWrite(11,HIGH);//turn DC Motor A move clockwise\n"+
-     "  digitalWrite(8,LOW);\n"+
-"}\n\n";
-    code="left();\n";
-  } else if (dropdown_direction==="backward"){
-    Blockly.Arduino.definitions_['define_backward'] = "void backward()\n"+
-"{\n"+
-     "  analogWrite(9,"+speed+");//input a simulation value to set the speed\n"+
-     "  analogWrite(10,"+speed+");\n"+
-     "  digitalWrite(13,LOW);//turn DC Motor B move anticlockwise\n"+
-     "  digitalWrite(12,HIGH);\n"+
-     "  digitalWrite(11,HIGH);//turn DC Motor A move clockwise\n"+
-     "  digitalWrite(8,LOW);\n"+
-"}\n\n";
-    code="backward();\n";
-  } else if (dropdown_direction==="stop"){
-    Blockly.Arduino.definitions_['define_stop'] = "void stop()\n"+
-"{\n"+
-     "digitalWrite(9,LOW);// disable the pin, to stop the motor. this should be done to avid damaging the motor.\n"+
-     "digitalWrite(10,LOW);\n"+
-     "delay(1000);\n"+
-"}\n\n";
-    code="stop();\n";
-  }
-  return code;
-};
-
-Blockly.Arduino.grove_thumb_joystick =  function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var dropdown_axis = this.getFieldValue('AXIS');
-  var stickPIN = "0";
-  if(dropdown_axis==="y"){
-    stickPIN = _get_next_pin(dropdown_pin);
-  } else {
-    stickPIN = dropdown_pin;
-  }
-  var code = 'analogRead('+stickPIN.substring(1,2)+')';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16);};
-function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16);};
-function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16);};
-function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h;};
-
-Blockly.Arduino.grove_rgb_led = function() {
-  var dropdown_pin_C1 = this.getFieldValue('PIN1');
-  var dropdown_pin_C2 = this.getFieldValue('PIN2');
-  var dropdown_pin_C3 = this.getFieldValue('PIN3');
-  var dropdown_stat_C1 = Blockly.Arduino.valueToCode(this, 'C1', Blockly.Arduino.ORDER_ATOMIC);
-  var dropdown_stat_C2 = Blockly.Arduino.valueToCode(this, 'C2', Blockly.Arduino.ORDER_ATOMIC);
-  var dropdown_stat_C3 = Blockly.Arduino.valueToCode(this, 'C3', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.setups_['setup_red_led_'+dropdown_pin_C1] = 'pinMode('+dropdown_pin_C1+', OUTPUT);';
-  Blockly.Arduino.setups_['setup_green_led_'+dropdown_pin_C2] = 'pinMode('+dropdown_pin_C2+', OUTPUT);';
-  Blockly.Arduino.setups_['setup_blue_led_'+dropdown_pin_C3] = 'pinMode('+dropdown_pin_C3+', OUTPUT);';
-  var code = 'analogWrite('+dropdown_pin_C1+','+dropdown_stat_C1+');\nanalogWrite('+dropdown_pin_C2+','+dropdown_stat_C2+');\nanalogWrite('+dropdown_pin_C3+','+dropdown_stat_C3+');\n';
-  return code;
-};
-
-// Blockly.Arduino.grove_rgb_led = function() {
-  // var dropdown_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
-  // var NextPIN = _get_next_pin(dropdown_pin);
-
-  // Blockly.Arduino.setups_['setup_input_'+dropdown_pin] = 'pinMode('+dropdown_pin+', OUTPUT);';
-  // Blockly.Arduino.setups_['setup_input_'+NextPIN] = 'pinMode('+NextPIN+', OUTPUT);';
-  // Blockly.Arduino.definitions_['define_uint8'] = "#define uint8 unsigned char";
-  // Blockly.Arduino.definitions_['define_uint16'] = "#define uint16 unsigned int";
-  // Blockly.Arduino.definitions_['define_uint32'] = "#define uint32 unsigned long int";
-  // Blockly.Arduino.definitions_['define_clkproduce_'+dropdown_pin] = "void ClkProduce_"+dropdown_pin+"(void)\n"+
-  // "{\n"+
-  // "  digitalWrite("+dropdown_pin+", LOW);\n"+
-  // "  delayMicroseconds(20);\n"+
-  // "  digitalWrite("+dropdown_pin+", HIGH);\n"+
-  // "  delayMicroseconds(20);\n"+
-  // "}\n";
-  // Blockly.Arduino.definitions_['define_send32zero_'+dropdown_pin] = "void Send32Zero_"+dropdown_pin+"(void)\n"+
-  // "{\n"+
-  // "  uint8 i;\n"+
-  // "  for (i=0; i<32; i++)\n"+
-  // "  {\n"+
-  // "    digitalWrite("+NextPIN+", LOW);\n"+
-  // "    ClkProduce_"+dropdown_pin+"();\n"+
-  // "  }\n"+
-  // "}\n";
-  // Blockly.Arduino.definitions_['define_taskanticode'] = "uint8 TakeAntiCode(uint8 dat)\n"+
-  // "{\n"+
-  // "  uint8 tmp = 0;\n"+
-  // "  if ((dat & 0x80) == 0)\n"+
-  // "  {\n"+
-  // "    tmp |= 0x02;\n"+
-  // "  }\n"+
-  // "  \n"+
-  // "  if ((dat & 0x40) == 0)\n"+
-  // "  {\n"+
-  // "    tmp |= 0x01;\n"+
-  // "  }\n"+
-  // "  return tmp;\n"+
-  // "}\n";
-  // Blockly.Arduino.definitions_['define_datasend_'+dropdown_pin] = "// gray data\n"+
-  // "void DatSend_"+dropdown_pin+"(uint32 dx)\n"+
-  // "{\n"+
-  // "  uint8 i;\n"+
-  // "  for (i=0; i<32; i++)\n"+
-  // "  {\n"+
-  // "    if ((dx & 0x80000000) != 0)\n"+
-  // "    {\n"+
-  // "      digitalWrite("+NextPIN+", HIGH);\n"+
-  // "    }\n"+
-  // "    else\n"+
-  // "    {\n"+
-  // "      digitalWrite("+NextPIN+", LOW);\n"+
-  // "    }\n"+
-  // "  dx <<= 1;\n"+
-  // "  ClkProduce_"+dropdown_pin+"();\n"+
-  // "  }\n"+
-  // "}\n";
-  // Blockly.Arduino.definitions_['define_datadealwithsend_'+dropdown_pin] = "// data processing\n"+
-// "void DataDealWithAndSend_"+dropdown_pin+"(uint8 r, uint8 g, uint8 b)\n"+
-// "{\n"+
-  // "  uint32 dx = 0;\n"+
-  // "  dx |= (uint32)0x03 << 30;             // highest two bits 1，flag bits\n"+
-  // "  dx |= (uint32)TakeAntiCode(b) << 28;\n"+
-  // "  dx |= (uint32)TakeAntiCode(g) << 26;\n"+
-  // "  dx |= (uint32)TakeAntiCode(r) << 24;\n"+
- // "\n"+
-  // "  dx |= (uint32)b << 16;\n"+
-  // "  dx |= (uint32)g << 8;\n"+
-  // "  dx |= r;\n"+
- // "\n"+
-  // "  DatSend_"+dropdown_pin+"(dx);\n"+
-// "}\n";
-  // var code = "Send32Zero_"+dropdown_pin+"(); // begin\n";
-  // console.log(this.itemCount_);
-  // if (this.itemCount_ == 0) {
-    // return '';
-  // } else {
-    // for (var n = 0; n < this.itemCount_; n++) {
-      // var colour_rgb = this.getFieldValue('RGB'+n);
-      // console.log(colour_rgb);
-      // code += "DataDealWithAndSend_"+dropdown_pin+"("+hexToR(colour_rgb)+", "+hexToG(colour_rgb)+", "+hexToB(colour_rgb)+"); // first node data\n";
-    // }
-  // }
-  // code += "Send32Zero_"+dropdown_pin+"();  // send to update data\n";
-  // return code;
-// };
-
-Blockly.Arduino.grove_bluetooth_slave = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var NextPIN = _get_next_pin(dropdown_pin);
-  var name = this.getFieldValue('NAME');
-//  var pincode = this.getFieldValue('PINCODE');
-  var statement_receive = Blockly.Arduino.statementToCode(this, "RCV");
-  var statement_send = Blockly.Arduino.statementToCode(this, "SNT");
-  /* if(pincode.length != 4){
-    alert("pincode length should be 4");
-  } */
-  Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>\n';
-  Blockly.Arduino.definitions_['var_bluetooth_'+dropdown_pin] = 'SoftwareSerial blueToothSerial_'+dropdown_pin+'('+dropdown_pin+','+NextPIN+');\n';
-
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] = 'Serial.begin(9600);\n';
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] += '  pinMode('+dropdown_pin+', INPUT);\n';
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] += '  pinMode('+NextPIN+', OUTPUT);\n';
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] += '  setupBlueToothConnection_'+dropdown_pin+'();\n';
-
-  Blockly.Arduino.definitions_['define_setupBlueToothConnection_'+dropdown_pin] = 'void setupBlueToothConnection_'+dropdown_pin+'()\n'+
-  '{\n'+
-  '  blueToothSerial_'+dropdown_pin+'.begin(38400); //Set BluetoothBee BaudRate to default baud rate 38400\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("\\r\\n+STWMOD=0\\r\\n"); //set the bluetooth work in slave mode\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("\\r\\n+STNA='+name+'\\r\\n"); //set the bluetooth name as "'+name+'"\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("\\r\\n+STPIN=0000\\r\\n");//Set SLAVE pincode"0000"\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("\\r\\n+STOAUT=1\\r\\n"); // Permit Paired device to connect me\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("\\r\\n+STAUTO=0\\r\\n"); // Auto-connection should be forbidden here\n'+
-  '  delay(2000); // This delay is required.\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("\\r\\n+INQ=1\\r\\n"); //make the slave bluetooth inquirable \n'+
-  '  Serial.println("The slave bluetooth is inquirable!");\n'+
-  '  delay(2000); // This delay is required.\n'+
-  '  blueToothSerial_'+dropdown_pin+'.flush();\n'+
-  '}\n';
-  var code = 'char recvChar_'+dropdown_pin+';\n'+
-  'while(1) {\n'+
-  '  if(blueToothSerial_'+dropdown_pin+'.available()) {//check if there is any data sent from the remote bluetooth shield\n'+
-  '    recvChar_'+dropdown_pin+' = blueToothSerial_'+dropdown_pin+'.read();\n'+
-  '    Serial.print(recvChar_'+dropdown_pin+');\n'+
-       statement_receive+
-  '  }\n'+
-  '  if(Serial.available()){//check if there is any data sent from the local serial terminal, you can add the other applications here\n'+
-  '    recvChar_'+dropdown_pin+' = Serial.read();\n'+
-  '    blueToothSerial_'+dropdown_pin+'.print(recvChar_'+dropdown_pin+');\n'+
-       statement_send+
-  '  }\n'+
-  '}\n';
-  return code;
-};
-
-Blockly.Arduino.grove_bluetooth_slave_AT = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  var NextPIN = _get_next_pin(dropdown_pin);
-  var name = this.getFieldValue('NAME');
-  var pincode = this.getFieldValue('PINCODE');
-  var statement_receive = Blockly.Arduino.statementToCode(this, "RCV");
-  var statement_send = Blockly.Arduino.statementToCode(this, "SNT");
-  /* if(pincode.length != 4){
-    alert("pincode length should be 4");
-  } */
-  Blockly.Arduino.definitions_['define_softwareserial'] = '#include <SoftwareSerial.h>\n';
-  Blockly.Arduino.definitions_['var_bluetooth_'+dropdown_pin] = 'SoftwareSerial blueToothSerial_'+dropdown_pin+'('+dropdown_pin+','+NextPIN+');\n';
-
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] = 'Serial.begin(9600);\n';
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] += '  pinMode('+dropdown_pin+', INPUT);\n';
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] += '  pinMode('+NextPIN+', OUTPUT);\n';
-  Blockly.Arduino.setups_['setup_bluetooth_'+dropdown_pin] += '  setupBlueToothConnection_'+dropdown_pin+'();\n';
-
-  Blockly.Arduino.definitions_['define_setupBlueToothConnection_'+dropdown_pin] = 'void setupBlueToothConnection_'+dropdown_pin+'()\n'+
-  '{\n'+
-  '  blueToothSerial_'+dropdown_pin+'.begin(9600); 		//Set BluetoothBee BaudRate to default baud rate 9600;\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("AT"); 		//set the bluetooth work in slave mode ;\n'+
-  '  delay(1000); 		// This delay is required.;\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("AT+NAME'+name+'"); 	//set the bluetooth name as "'+name+'";\n'+
-  '  delay(1000); // This delay is required.;\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("AT+PIN'+pincode+'");		//Set SLAVE pincode"'+pincode+'";\n'+
-  '  delay(1000); // This delay is required.;\n'+
-  '  blueToothSerial_'+dropdown_pin+'.print("AT+AUTH1"); // Permit Paired device to connect me;\n'+
-  '  delay(1000); // This delay is required.;\n'+
-  '  blueToothSerial_'+dropdown_pin+'.flush();\n'+
-  '}\n';
-  var code = 'char recvChar_'+dropdown_pin+';\n'+
-  'while(1) {\n'+
-  '  if(blueToothSerial_'+dropdown_pin+'.available()) {//check if there is any data sent from the remote bluetooth shield\n'+
-  '    recvChar_'+dropdown_pin+' = blueToothSerial_'+dropdown_pin+'.read();\n'+
-  '    Serial.print(recvChar_'+dropdown_pin+');\n'+
-       statement_receive+
-  '  }\n'+
-  '  if(Serial.available()){//check if there is any data sent from the local serial terminal, you can add the other applications here\n'+
-  '    recvChar_'+dropdown_pin+' = Serial.read();\n'+
-  '    blueToothSerial_'+dropdown_pin+'.print(recvChar_'+dropdown_pin+');\n'+
-       statement_send+
-  '  }\n'+
-  '}\n';
-  return code;
-};
-
-Blockly.Arduino.grove_EMETTEUR_IR = function() {
+Blockly.Arduino.peguino_actuators_servo_attach = function() {
   var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
-  var value_num = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.Arduino.ORDER_ATOMIC);
-  Blockly.Arduino.setups_['setup_output'+value_pin] = 'pinMode('+value_pin+', OUTPUT);';
-  var code = 'tone('+value_pin+','+value_num+');\n';
+  var value_degree = Blockly.Arduino.valueToCode(this, 'DEGREE', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_name = this.getFieldValue('SERVO_NAME');
+  if (profile.defaultBoard = profile["kit_peguino_uno_esp32"])
+	  Blockly.Arduino.includes_['define_servo'] = '#include <ESP32Servo.h>';
+  if (profile.defaultBoard = profile["kit_peguino_uno_nano"])
+	  Blockly.Arduino.includes_['define_servo'] = '#include <Servo.h>';
+  
+  Blockly.Arduino.definitions_['var_servo' + dropdown_name] = 'Servo ' + dropdown_name + ';';
+  Blockly.Arduino.setups_['setup_servo_' + dropdown_name] = dropdown_name + '.attach(' + value_pin + ');';
+  return '';
+};
+
+Blockly.Arduino.peguino_actuators_servo_move = function() {
+  var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+  var value_degree = Blockly.Arduino.valueToCode(this, 'DEGREE', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_name = this.getFieldValue('SERVO_NAME');
+
+  var code = dropdown_name + '.write(' + value_degree + ');\n';
   return code;
 };
 
-Blockly.Arduino.grove_RECEPTEUR_IR = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  Blockly.Arduino.setups_['setup_button_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
-  var code = 'digitalRead('+dropdown_pin+')';
+
+Blockly.Arduino.peguino_actuators_servo_read_degrees = function() {
+  var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_name = this.getFieldValue('SERVO_NAME');
+
+  var code = dropdown_name + '.read()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino.grove_FIN_COURSE = function() {
-  var dropdown_pin = this.getFieldValue('PIN');
-  Blockly.Arduino.setups_['setup_button_'+dropdown_pin] = 'pinMode('+dropdown_pin+', INPUT);';
-  var code = 'digitalRead('+dropdown_pin+')';
+Blockly.Arduino.peguino_actuators_servo_attached = function() {
+  var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_name = this.getFieldValue('SERVO_NAME');
+
+  var code = dropdown_name+'.attached()';  
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino.grove_dht_read = function() {
-  var sensor = this.getFieldValue('SENSOR');
-  var pin = this.getFieldValue('PIN');
-  var type = this.getFieldValue('TYPE');
-
-  var code = '';
-  switch(type){
-      case 'h':
-//      code += 'floatToStr(dht_' + pin + '_' + sensor + '.readHumidity()) + "%"';
-        code += '(int)(dht_' + pin + '_' + sensor + '.readHumidity())';
-      break;
-      case 'C':
-//        code += 'floatToStr(dht_' + pin + '_' + sensor + '.readTemperature()) + "C"';
-          code += '(int)(dht_' + pin + '_' + sensor + '.readTemperature())';
-      break;
-      case 'F':
-//        code += 'floatToStr(dht_' + pin + '_' + sensor + '.readTemperature(true)) + "F"';
-          code += '(int)(dht_' + pin + '_' + sensor + '.readTemperature(true))';
-      break;
-  }
-
-
-  Blockly.Arduino.includes_['define_dht_'+ pin + '_' + sensor] = '#include <DHT.h>\n'
-  Blockly.Arduino.definitions_['define_dht_'+ pin + '_' + sensor] = 'DHT dht_' + pin + '_' + sensor + '(' + pin + ',' + sensor + ');\n';
-
-  Blockly.Arduino.setups_['setup_dht_' + pin + '_' + sensor] = 'dht_' + pin + '_' + sensor + '.begin();\n'
-/*
-  Blockly.Arduino.definitions_['define_dht_floatToStr'] = 'String floatToStr(float val){\n'
-    + '  int buf = (int)val;\n'
-    + '  String str = String(buf);\n'
-    + '  str += ".";\n'
-    + '  str += String((int)(val*10)-buf*10);\n'
-    + '  return str;\n'
-    + '}\n';
-*/
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-};
-
-Blockly.Arduino.grove_lcd_rgb_print = function() {
-  var text1 = Blockly.Arduino.valueToCode(this, 'TEXT',
-      Blockly.Arduino.ORDER_UNARY_POSTFIX) || '\'\'';
-  var text2 = Blockly.Arduino.valueToCode(this, 'TEXT2',
-      Blockly.Arduino.ORDER_UNARY_POSTFIX) || '\'\'';
-	  
-  if(text1.length>16||text2.length>16){
-      alert("16 char maxi !");
-  }
-
-  Blockly.Arduino.includes_['define_lcd_rgb'] = '#include <rgb_lcd.h>\n';
-  Blockly.Arduino.includes_['define_Wire'] = '#include <Wire.h>\n';
-
-  Blockly.Arduino.definitions_['var_lcd_rgb'] = 'rgb_lcd LCD_RGB;';
+Blockly.Arduino.peguino_actuators_servo_detach = function() {
+  var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_name = this.getFieldValue('SERVO_NAME');
   
-  Blockly.Arduino.setups_['setup_lcd_rgb'] = 'LCD_RGB.begin(16, 2);\n';
-  
-  var code = 'LCD_RGB.setCursor(0,0);\n';
-  code    += 'LCD_RGB.print('+text1+');\n';
-  code    += 'LCD_RGB.setCursor(0,1);\n';
-  code    += 'LCD_RGB.print('+text2+');\n';
+  var code = dropdown_name+'.detach();';
   return code;
 };
 
-Blockly.Arduino.grove_lcd_rgb_power = function() {
-  var dropdown_stat = this.getFieldValue('STAT');
+Blockly.Arduino.peguino_actuators_servo_rot_continue = function() {
+  var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+  var value_degree = Blockly.Arduino.valueToCode(this, 'SPEED', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_name = this.getFieldValue('SERVO_NAME');
 
-  Blockly.Arduino.includes_['define_lcd_rgb'] = '#include <rgb_lcd.h>';
-  Blockly.Arduino.includes_['define_Wire'] = '#include <Wire.h>';
-
-  Blockly.Arduino.definitions_['var_lcd_rgb'] = 'rgb_lcd LCD_RGB;';
-  
-  Blockly.Arduino.setups_['setup_lcd_rgb'] = 'LCD_RGB.begin(16, 2);\n';
-  
-  var code = 'LCD_RGB';
-  if(dropdown_stat==="ON"){
-    code += '.display();\n';
-  } else {
-    code += '.noDisplay();\n';
-  }
+  var code = dropdown_name + '.write(' + value_degree + ');\n';
   return code;
 };
 
-Blockly.Arduino.grove_lcd_rgb_clean = function() {
-  var dropdown_stat = this.getFieldValue('STAT');
+Blockly.Arduino.peguino_actuators_servo_rot_continue_param = function() {
+  var value_pin = Blockly.Arduino.valueToCode(this, 'PIN', Blockly.Arduino.ORDER_ATOMIC);
+  var degree = Blockly.Arduino.valueToCode(this, 'SPEED', Blockly.Arduino.ORDER_ATOMIC);
+  var dropdown_etat = this.getFieldValue('ETAT');
+  var dropdown_name = this.getFieldValue('SERVO_NAME');
+  
+  if (dropdown_etat == "FORWARD") var value_degree = 90 + parseInt(degree);
+  if (dropdown_etat == "BACKWARD") var value_degree = 90 - parseInt(degree);
 
-  Blockly.Arduino.includes_['define_lcd_rgb'] = '#include <rgb_lcd.h>';
-  Blockly.Arduino.includes_['define_Wire'] = '#include <Wire.h>';
-
-  Blockly.Arduino.definitions_['var_lcd_rgb'] = 'rgb_lcd LCD_RGB;';
-  
-  Blockly.Arduino.setups_['setup_lcd_rgb'] = 'LCD_RGB.begin(16, 2);\n';
-  
-  var code = 'LCD_RGB.clear();\n';
-  
+  var code = dropdown_name + '.write(' + value_degree + ');\n';
   return code;
 };
 
-Blockly.Arduino.grove_lcd_rgb_effect = function() {
-  var dropdown_stat = this.getFieldValue('STAT');
-
-  Blockly.Arduino.includes_['define_lcd_rgb'] = '#include <rgb_lcd.h>\n';
-  Blockly.Arduino.includes_['define_Wire'] = '#include <Wire.h>\n';
-
-  Blockly.Arduino.definitions_['var_lcd_rgb'] = 'rgb_lcd LCD_RGB;';
-  
-  Blockly.Arduino.setups_['setup_lcd_rgb'] = 'LCD_RGB.begin(16, 2);\n';
-  
-  var code = 'LCD_RGB';
-  if(dropdown_stat==="LEFT"){
-    code += '.scrollDisplayLeft();\n';
-  } else if(dropdown_stat==="RIGHT"){
-    code += '.scrollDisplayRight();\n';
-  } else {
-    code += '.autoscroll();\n';
-  }
+Blockly.Arduino.peguino_actuators_u8g_draw_string = function() {
+  var value_text = Blockly.Arduino.valueToCode(this, 'Text', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var x = Blockly.Arduino.valueToCode(this, 'X', Blockly.Arduino.ORDER_ATOMIC);
+  var y = Blockly.Arduino.valueToCode(this, 'Y', Blockly.Arduino.ORDER_ATOMIC);    
+  Blockly.Arduino.definitions_["define_u8g"] = '#include <U8glib.h>;\n U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_DEV_0|U8G_I2C_OPT_NO_ACK|U8G_I2C_OPT_FAST);\n';
+  //dans le setup    
+  Blockly.Arduino.setups_["setup_u8g"] =
+	 'u8g.firstPage();\n'
+	+ 'do {'
+	+ 'u8g.setFont(u8g_font_unifont);\n'
+	+ 'u8g.drawStr( 0, 22, "Bonjour !");\n'
+	+ '} while( u8g.nextPage());\n'
+	+ 'delay(1000);\n';
+  var code = 'u8g.firstPage();\n'
+	code    += 'do {\n'
+	code    += 'u8g.drawStr('+x+', '+y+', '+value_text+');\n'	
+	code    += '}\n while( u8g.nextPage() );\n';
+  return code;
+};
+Blockly.Arduino.peguino_actuators_u8g_draw_4strings = function() {
+  var value_text_line1 = Blockly.Arduino.valueToCode(this, 'Text_line1', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var value_text_line2 = Blockly.Arduino.valueToCode(this, 'Text_line2', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var value_text_line3 = Blockly.Arduino.valueToCode(this, 'Text_line3', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var value_text_line4 = Blockly.Arduino.valueToCode(this, 'Text_line4', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  Blockly.Arduino.definitions_["define_u8g"] = '#include <U8glib.h>;\n U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_DEV_0|U8G_I2C_OPT_NO_ACK|U8G_I2C_OPT_FAST);\n';
+  //dans le setup    
+  Blockly.Arduino.setups_["setup_u8g"] =
+	 'u8g.firstPage();\n'
+	+ 'do {'
+	+ 'u8g.setFont(u8g_font_unifont);\n'
+	+ 'u8g.drawStr( 0, 22, "Bonjour !");\n'
+	+ '} while( u8g.nextPage());\n'
+	+ 'delay(1000);\n';
+  var code = 'u8g.firstPage();\n'
+	code    += 'do {\n'
+	code    += 'u8g.drawStr(0, 12, '+value_text_line1+');\n'
+	code    += 'u8g.drawStr(0, 28, '+value_text_line2+');\n'
+	code    += 'u8g.drawStr(0, 44, '+value_text_line3+');\n'
+	code    += 'u8g.drawStr(0, 60, '+value_text_line4+');\n'	
+	code    += '}\n while( u8g.nextPage() );\n';
   return code;
 };
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Blockly.Arduino.grove_lcd_rgb_init = function() {
-  Blockly.Arduino.includes_['define_lcd_rgb'] = '#include <rgb_lcd.h>';
-  Blockly.Arduino.includes_['define_Wire'] = '#include <Wire.h>';
-
-  Blockly.Arduino.definitions_['var_lcd_rgb'] = 'rgb_lcd LCD_RGB;';
-  
-  Blockly.Arduino.setups_['setup_lcd_rgb'] = 'LCD_RGB.begin(16, 2);\n';
-  
-  var code = '';
-  
+Blockly.Arduino.peguino_actuators_u8g_print = function() {
+  var value_n = Blockly.Arduino.valueToCode(this, 'N', Blockly.Arduino.ORDER_ATOMIC);
+  var x = Blockly.Arduino.valueToCode(this, 'X', Blockly.Arduino.ORDER_ATOMIC);
+  var y = Blockly.Arduino.valueToCode(this, 'Y', Blockly.Arduino.ORDER_ATOMIC);    
+  Blockly.Arduino.definitions_["define_u8g"] = '#include <U8glib.h>;\n U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_DEV_0|U8G_I2C_OPT_NO_ACK|U8G_I2C_OPT_FAST);\n';
+  //dans le setup    
+  Blockly.Arduino.setups_["setup_u8g"] =
+	'u8g.firstPage();\n'
+	+ 'do {'
+	+ 'u8g.setFont(u8g_font_unifont);\n'
+	+ 'u8g.drawStr( 0, 22, "Bonjour !");\n'
+	+ '} while( u8g.nextPage());\n'
+	+ 'delay(1000);\n';
+  var code =
+	'u8g.firstPage();\n'
+	code    += 'do {\n'
+	code    += 'u8g.setPrintPos('+x+', '+y+');\n'	
+	code    += 'u8g.print('+value_n+');\n'		
+	code    += '}\n while( u8g.nextPage() );\n';
   return code;
 };
-
-Blockly.Arduino.grove_lcd_rgb_clear = function() {
-   
-  var code = 'LCD_RGB.clear();\n';
-  
+Blockly.Arduino.peguino_actuators_u8g_4draw_print = function() {
+  var value_text_line1 = Blockly.Arduino.valueToCode(this, 'Text_line1', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var value_text_line2 = Blockly.Arduino.valueToCode(this, 'Text_line2', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var value_text_line3 = Blockly.Arduino.valueToCode(this, 'Text_line3', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var value_text_line4 = Blockly.Arduino.valueToCode(this, 'Text_line4', Blockly.Arduino.ORDER_ATOMIC) || '\'\'';
+  var value_n1 = Blockly.Arduino.valueToCode(this, 'N1', Blockly.Arduino.ORDER_ATOMIC);
+  var value_n2 = Blockly.Arduino.valueToCode(this, 'N2', Blockly.Arduino.ORDER_ATOMIC);
+  var value_n3 = Blockly.Arduino.valueToCode(this, 'N3', Blockly.Arduino.ORDER_ATOMIC);
+  var value_n4 = Blockly.Arduino.valueToCode(this, 'N4', Blockly.Arduino.ORDER_ATOMIC);
+  Blockly.Arduino.definitions_["define_u8g"] = '#include <U8glib.h>;\n U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_DEV_0|U8G_I2C_OPT_NO_ACK|U8G_I2C_OPT_FAST);\n';
+  //dans le setup    
+  Blockly.Arduino.setups_["setup_u8g"] =
+	 'u8g.firstPage();\n'
+	+ 'do {'
+	+ 'u8g.setFont(u8g_font_unifont);\n'
+	+ 'u8g.drawStr( 0, 22, "Bonjour !");\n'
+	+ '} while( u8g.nextPage());\n'
+	+ 'delay(1000);\n';
+  var code = 'u8g.firstPage();\n'
+	code    += 'do {\n'
+	code    += 'u8g.drawStr(0, 12, '+value_text_line1+');\n'
+	code    += 'u8g.setPrintPos(100, 12 );\n'	
+	code    += 'u8g.print('+value_n1+');\n'		
+	code    += 'u8g.drawStr(0, 28, '+value_text_line2+');\n'
+	code    += 'u8g.setPrintPos(100, 28 );\n'
+	code    += 'u8g.print('+value_n2+');\n'			
+	code    += 'u8g.drawStr(0, 44, '+value_text_line3+');\n'
+	code    += 'u8g.setPrintPos(100, 44 );\n'
+	code    += 'u8g.print('+value_n3+');\n'	
+	code    += 'u8g.drawStr(0, 60, '+value_text_line4+');\n'
+	code    += 'u8g.setPrintPos(100, 60 );\n'
+	code    += 'u8g.print('+value_n4+');\n'		
+	code    += '}\n while( u8g.nextPage() );\n';
   return code;
 };
-
-Blockly.Arduino.grove_lcd_rgb_scrolling = function() {
-  var dropdown_stat = this.getFieldValue('EFFECT');
-
-  var code = 'LCD_RGB';
-  if(dropdown_stat==="LEFT"){
-    code += '.scrollDisplayLeft();\n';
-  } else if(dropdown_stat==="RIGHT"){
-    code += '.scrollDisplayRight();\n';
-  } else {
-    code += '.autoscroll();\n';
-  }
-  return code;
-};
-
-Blockly.Arduino.grove_lcd_rgb_set_cursor = function() {
-  
-  var ligne = this.getFieldValue('Line');
-  var colonne = this.getFieldValue('Row');
-  var code = 'LCD_RGB.setCursor('+colonne+','+ligne+');\n';
-  
-  return code;
-};
-
-Blockly.Arduino.grove_lcd_rgb_set_RGB = function() {
-  
-  var rouge = this.getFieldValue('Red');
-  var vert = this.getFieldValue('Green');
-  var bleu = this.getFieldValue('Blue');
-  var code = 'LCD_RGB.setRGB('+rouge+','+vert+','+bleu+');\n';
-  
-  return code;
-};
-
-Blockly.Arduino.grove_lcd_rgb_print_data = function() {
-  var data1 = Blockly.Arduino.valueToCode(this, 'DATA', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '\'\'';
- 
-  var code = 'LCD_RGB.print('+data1+');\n';
-  
-  return code;
-};
-
-
-Blockly.Arduino.grove_lcd_rgb_write_data = function() {
-  var data1 = this.getFieldValue('DATA');
- 
-  var dropdown_stat = this.getFieldValue('FORMAT');
-
-  var code = 'LCD_RGB';
-  if(dropdown_stat==="0x"){
-    code += '.write(0x'+data1+');\n';
-  } else if(dropdown_stat==="0b"){
-    code += '.write(0b'+data1+');\n';
-  } else {
-    code += '.write('+data1+');\n';
-  }
-    
-  return code;
-};
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//*****   Driver moteur Grove V1.3 Cdo 2017 03 19 */
-function grove_driver13_genere_inc_def(value_i2c_address) {
-  Blockly.Arduino.includes_['define_grove_driver13'] = '#include <Grove_I2C_Motor_Driver.h>\n';
-  Blockly.Arduino.definitions_['grove_driver13_motor' + value_i2c_address] = 
-                      "// Create a variable even there is a global variable named Motor. \n" +
-                      "I2CMotorDriver Motor_" + value_i2c_address + ";"
-  Blockly.Arduino.setups_['grove_setup_DRIVER13_' + value_i2c_address] = 'Motor_' + value_i2c_address + '.begin(' + value_i2c_address + ');\n';
-}
-
-Blockly.Arduino.grove_driver13_motor = function() {
-  var value_i2c_address = Blockly.Arduino.valueToCode(this, 'I2CADDRESS', Blockly.Arduino.ORDER_ATOMIC);
-  var value_MotorNum = this.getFieldValue('NUMMOTOR');
-  var value_speed = Blockly.Arduino.valueToCode(this, 'SPEED', Blockly.Arduino.ORDER_ATOMIC);
-
-  grove_driver13_genere_inc_def (value_i2c_address);
-  return "Motor_" + value_i2c_address + ".speed(" + value_MotorNum + ", "+ value_speed + ");\n";
-};
-
-//*****   grove mini Driver moteur Grove  */
-function grove_mini_driver_genere_inc_def(value_i2c_address) {
-  Blockly.Arduino.includes_['define_grove_mini_driver'] = '#include <SparkFunMiniMoto.h>\n';
-  Blockly.Arduino.definitions_['grove_mini_driver_motor' + value_i2c_address] = 
-                      "MiniMoto Motor_" + value_i2c_address + " (" + value_i2c_address + ");"
-}
-Blockly.Arduino.grove_mini_driver_motor = function() {
-  var value_i2c_address = this.getFieldValue('I2CADDRESS');
-  var value_speed = Blockly.Arduino.valueToCode(this, 'SPEED', Blockly.Arduino.ORDER_ATOMIC);
-
-  grove_mini_driver_genere_inc_def (value_i2c_address);
-  return "Motor_" + value_i2c_address + ".drive(" + value_speed + ");\n";
-};
-Blockly.Arduino.grove_mini_driver_stop = function() {
-  var value_i2c_address = this.getFieldValue('I2CADDRESS');
-
-  grove_mini_driver_genere_inc_def (value_i2c_address);
-  return "Motor_" + value_i2c_address + ".stop();\n";
-};
-Blockly.Arduino.grove_mini_driver_error = function() {
-  var value_i2c_address = this.getFieldValue('I2CADDRESS');
-
-  grove_mini_driver_genere_inc_def (value_i2c_address);
-var code = '(Motor_' + value_i2c_address + '.getFault())';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];};

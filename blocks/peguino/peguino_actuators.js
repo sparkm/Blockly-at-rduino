@@ -7,157 +7,214 @@ goog.require('Blockly.Blocks');
 goog.require('Blockly.Types');
 
 // define blocks
-
-Blockly.Blocks['peguino_actuators_buzzer'] = {
+ 
+ Blockly.Blocks['peguino_actuators_buzzer'] = {
   init: function() {
     this.setColour(Blockly.Blocks.peguino_actuators.HUE);
-	this.setHelpUrl(Blockly.Msg.GROVE_INOUT_BUZZER_HELPURL);
+	this.setHelpUrl(Blockly.Msg.Peguino_BuzzerBrick_HELPURL);
     this.appendDummyInput()
-        .appendField(Blockly.Msg.GROVE_INOUT_BUZZER_TEXT1)
+        .appendField(Blockly.Msg.Peguino_BuzzerBrick_TEXT)
         .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Buzzer_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
-	this.appendValueInput("PIN")
-        .setCheck('Number')
-        .setAlign(Blockly.ALIGN_RIGHT)	
-        .appendField(Blockly.Msg.GROVE_INOUT_BUZZER_INPUT);
-	this.appendDummyInput("")
+		.appendField(Blockly.Msg.Peguino_BuzzerBrick_PLUG)
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_BuzzerBrick_UNIT_CHOICE), Blockly.Msg.Peguino_BuzzerBrick_UNIT);
+		this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.GROVE_INOUT_BUZZER_TEXT2)
-        .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), "STAT");
-    this.setPreviousStatement(true, null);
+		.appendField(Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY)
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_CHOICE), Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_UNIT);
+		this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME)
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_CHOICE), Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_UNIT);
+	this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.GROVE_INOUT_BUZZER_TOOLTIP);
+    this.setTooltip(Blockly.Msg.Peguino_BuzzerBrick_TOOLTIP);
   }
 };
 
-Blockly.Blocks['peguino_actuators_serial_lcd_print'] = {
+ Blockly.Blocks['peguino_actuators_buzzer2'] = {
   init: function() {
     this.setColour(Blockly.Blocks.peguino_actuators.HUE);
-	this.setHelpUrl(Blockly.Msg.GROVE_INOUT_LCD_PRINT_HELPURL);
+	this.setHelpUrl(Blockly.Msg.Peguino_BuzzerBrick_HELPURL);
     this.appendDummyInput()
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_PRINT_TEXT)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_LCD_Display_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_PRINT_INPUT1)
-        .appendField(new Blockly.FieldTextInput('1',  Blockly.Arduino.pinGroveDigitalValidator), 'PIN');
-    this.appendValueInput("TEXT")
-        .setCheck('String')
+        .appendField(Blockly.Msg.Peguino_BuzzerBrick_TEXT)
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Buzzer_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+		this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.Peguino_BuzzerBrick_PLUG)
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_BuzzerBrick_UNIT_CHOICE), Blockly.Msg.Peguino_BuzzerBrick_UNIT);
+	    this.appendValueInput("Frequ")
+		.setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_PRINT_INPUT2);
-    this.appendValueInput("TEXT2")
-        .setCheck('String')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_PRINT_INPUT3);
-    this.appendValueInput("DELAY_TIME")
-        .setCheck('Number')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_PRINT_INPUT4);
-    this.setPreviousStatement(true, null);
+        .appendField(Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_VALUE);		
+		this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME)
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_CHOICE), Blockly.Msg.Peguino_BuzzerBrick_PLAYTIME_UNIT);
+	this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.GROVE_INOUT_LCD_PRINT_TOOLTIP);
+    this.setTooltip(Blockly.Msg.Peguino_BuzzerBrick_TOOLTIP);
   }
 };
 
-//grove lcd power on/off
-Blockly.Blocks['peguino_actuators_serial_lcd_power'] = {
-  init: function() {
-    this.setColour(Blockly.Blocks.peguino_actuators.HUE);
-	this.setHelpUrl(Blockly.Msg.GROVE_INOUT_LCD_POWER_HELPURL);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_POWER_TEXT)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_LCD_Display_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_POWER_INPUT)
-        .appendField(new Blockly.FieldTextInput('1',  Blockly.Arduino.pinGroveDigitalValidator), 'PIN');
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_POWER_STATE)
-        .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN_ONOFF), "STAT");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.GROVE_INOUT_LCD_POWER_TOOLTIP);
-  }
-};
-
-//scroll left/right/no scroll/blink/noblink
-Blockly.Blocks['peguino_actuators_serial_lcd_effect'] = {
-  init: function() {
-    this.setColour(Blockly.Blocks.peguino_actuators.HUE);
-	this.setHelpUrl(Blockly.Msg.GROVE_INOUT_LCD_EFFECT_HELPURL);
-    this.appendDummyInput()
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_EFFECT_TEXT)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_LCD_Display_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_EFFECT_INPUT)
-        .appendField(new Blockly.FieldTextInput('1',  Blockly.Arduino.pinGroveDigitalValidator), 'PIN');
-    this.appendDummyInput()
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.GROVE_INOUT_LCD_EFFECT_EFFECT)
-        .appendField(new Blockly.FieldDropdown(Blockly.Msg.GROVE_INOUT_LCD_EFFECT_EFFECT_EFFECT), "STAT");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.GROVE_INOUT_LCD_EFFECT_TOOLTIP);
-  }
-};
+		/*		this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY)
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_CHOICE), Blockly.Msg.Peguino_BuzzerBrick_FREQUENCY_UNIT); */	
 
 Blockly.Blocks['peguino_actuators_led'] = {
   init: function() {
     this.setColour(Blockly.Blocks.peguino_actuators.HUE);
-	this.setHelpUrl(Blockly.Msg.GROVE_INOUT_LED_HELPURL);
+	this.setHelpUrl(Blockly.Msg.Peguino_LED_HELPURL);
     this.appendDummyInput()
-        .appendField(Blockly.Msg.GROVE_INOUT_LED_INPUT1)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_LED_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
-	this.appendValueInput("PIN")
-        .setCheck('Number')
-        .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.GROVE_INOUT_LED_INPUT2);		
-    this.setInputsInline(true);
+		.appendField(Blockly.Msg.Peguino_LED_TEXT)
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_IR_LED_Receiver_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+		.appendField(Blockly.Msg.Peguino_LED_PLUG)     
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_LED_UNIT_CHOICE), Blockly.Msg.Peguino_LED_UNIT);
 	this.appendDummyInput()
 		.setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.GROVE_INOUT_LED_INPUT3)
-        .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), "STAT");
+        .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), Blockly.Msg.Peguino_LED_STATUS);
+	this.appendDummyInput()	
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.GROVE_INOUT_LED_TOOLTIP);
+    this.setTooltip(Blockly.Msg.Peguino_LED_TOOLTIP);
+  }
+};
+
+// Peguino Nano RGB LED
+Blockly.Blocks['peguino_actuators_rgbled'] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.peguino_actuators.HUE);
+	this.setHelpUrl(Blockly.Msg.Peguino_RGBLED_HELPURL);
+    this.appendDummyInput()
+		.appendField(Blockly.Msg.Peguino_RGBLED_TEXT)
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_LED_Brick_blockly_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+	this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.GROVE_INOUT_LED_INPUT3)
+        .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), Blockly.Msg.Peguino_RGBLED_STATUS);		
+	var field = new Blockly.FieldColour('#ffffff');	
+		field.setColours(
+			['#ffffff', '#ffff00', '#ffaa00','#ff0000',
+			 '#aa00ff', '#0000ff' , '#00aaff', '#00ff00',
+			 '#91ffcd', '#ffffaa', '#ff00aa', '#ffaaff'],
+			['f1', 'f2', 'f3', 'f4',
+			'f5', 'f6', 'f7', 'f8',
+			'f9', 'f10', 'f11', 'f12']);
+		field.setColumns(4);
+    this.appendDummyInput()
+		.setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.Peguino_RGBLED_RGBCOLOR)
+        .appendField(field, Blockly.Msg.Peguino_RGBLED_RGBCOLORVALUE);		
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.Peguino_RGBLED_TOOLTIP);
   }
 };
 
 
-Blockly.Blocks['peguino_actuators_motor_sens'] = {
-  init: function() {
-    this.setColour(Blockly.Blocks.peguino_actuators.HUE);
-	this.appendDummyInput()
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/mbot/mot_left.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
-		.setAlign(Blockly.ALIGN_RIGHT)
-      	.appendField(Blockly.Msg.MBOT_MOTOR_LEFT_SENS)
-		.appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), 'STAT');
-	this.appendDummyInput()
-		.setAlign(Blockly.ALIGN_RIGHT)
-		.appendField(Blockly.Msg.MBOT_MOTOR_SENS);
-	this.setHelpUrl(Blockly.Msg.MBOT_HELPURL);
+Blockly.Blocks['peguino_actuators_i2c_scan'] = {
+	init: function() {
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.Peguino_I2CScan_TEXT); 
+    this.setInputsInline(false);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.MBOT_MOTOR_TOOLTIP);
+    this.setColour(Blockly.Blocks.peguino_actuators.HUE);
+    this.setTooltip(Blockly.Msg.Peguino_I2CScan_TOOLTIP);
+    this.setHelpUrl(Blockly.Msg.Peguino_I2CScan_HELPURL);
   }
 };
 
-Blockly.Blocks['peguino_actuators_motor_PWM'] = {
+
+Blockly.Blocks['peguino_actuators_i2c_lcdinit'] = {
   init: function() {
     this.setColour(Blockly.Blocks.peguino_actuators.HUE);
-	this.appendValueInput("PWM", 'Number')
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/mbot/mot_left.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
-        .setCheck('Number')
+	this.setHelpUrl('http://www.techno-zone-51.fr/dokuwiki2/doku.php?id=documentation:lcd1');
+    this.appendDummyInput("")
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT74)
+        .appendField(new Blockly.FieldImage("blocks/peguino/Peguino_LCD_Display_Brick_blockly_01.png", Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
+    this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.MBOT_MOTOR_LEFT_PWM);
-	this.setHelpUrl(Blockly.Msg.MBOT_HELPURL);
+		.appendField(Blockly.Msg.TECHNOZONE51_TEXT75)
+        .appendField(new Blockly.FieldTextInput('0x27',Blockly.Blocks.math_number.validator), 'I2C_adress');
+    this.appendDummyInput("")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT76)
+        .appendField(new Blockly.FieldTextInput('16',Blockly.Blocks.math_number.validator), 'nbcol');
+    this.appendDummyInput("")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT77)
+        .appendField(new Blockly.FieldTextInput('2',Blockly.Blocks.math_number.validator), 'nblig');   
+    this.appendDummyInput("")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT78)     
+        .appendField(new Blockly.FieldCheckbox('TRUE'), 'backlight');   
+    this.appendDummyInput("")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT79)     
+        .appendField(new Blockly.FieldCheckbox('FALSE'), 'cursor'); 
+    this.appendDummyInput("")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT80)     
+        .appendField(new Blockly.FieldCheckbox('FALSE'), 'blink');          
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.MBOT_MOTOR_TOOLTIP);
+    this.setTooltip(Blockly.Msg.TECHNOZONE51_TEXT81);
   }
 };
+
+Blockly.Blocks['peguino_actuators_i2c_lcdwrite'] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.peguino_actuators.HUE);
+	this.setHelpUrl('http://www.techno-zone-51.fr/dokuwiki2/doku.php?id=documentation:lcd1');
+    this.appendDummyInput("")
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT94)
+        .appendField(new Blockly.FieldImage("blocks/peguino/Peguino_LCD_Display_Brick_blockly_01.png", Blockly.Arduino.imageSize, Blockly.Arduino.imageSize))
+    this.appendValueInput("TEXT")
+		.setCheck('String')
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT98);
+    this.appendDummyInput("")
+		.appendField(Blockly.Msg.TECHNOZONE51_TEXT95);
+    this.appendValueInput("COL")
+		.setCheck('Number')
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT96)
+    this.appendValueInput("LIG")
+		.setCheck('Number')
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT97)   
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.TECHNOZONE51_TEXT99);
+    this.setInputsInline(false);
+  }
+};
+
+//scroll left/right/no scroll/blink/noblink
+Blockly.Blocks['peguino_actuators_i2c_lcdclear'] = {
+  init: function() {
+    this.setColour(Blockly.Blocks.peguino_actuators.HUE);
+	this.setHelpUrl('http://www.techno-zone-51.fr/dokuwiki2/doku.php?id=documentation:lcd1');
+    this.appendDummyInput("")
+        .appendField(Blockly.Msg.TECHNOZONE51_TEXT92)
+        .appendField(new Blockly.FieldImage("blocks/peguino/Peguino_LCD_Display_Brick_blockly_01.png", Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));   
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip(Blockly.Msg.TECHNOZONE51_TEXT93);
+  }
+};
+
 Blockly.Blocks['peguino_actuators_servo_attach'] = {
   init: function() {
     this.setColour(Blockly.Blocks.peguino_actuators.HUE);
 	this.setHelpUrl(Blockly.Msg.ARDUINO_SERVO_MOVE_HELPURL);
     this.appendDummyInput("")
-        .appendField(Blockly.Msg.ARDUINO_SERVO_ATTACH1)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/servo/servomoteur.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+        .appendField(Blockly.Msg.Peguino_AttachServo_TEXT)
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Microservo_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(Blockly.Msg.ARDUINO_SERVO_ATTACH2)
@@ -166,13 +223,19 @@ Blockly.Blocks['peguino_actuators_servo_attach'] = {
                                       Blockly.Msg.SERVO_DEFAULT_NAME,
                                       false, false, false),
             'SERVO_NAME');
-	this.appendValueInput("PIN")
-        .setCheck('Number')
+//	this.appendValueInput("PIN")
+	this.appendValueInput()
+//        .setCheck('Number')
+		.appendField(Blockly.Msg.Peguino_AttachServo_PLUG)
+//		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_AttachServo_UNIT_CHOICE), Blockly.Msg.Peguino_AttachServo_UNIT);
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT2);
+//        .appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT2);
+//		.appendField(Blockly.Msg.Peguino_AttachServo_PLUG)
+		.appendField(new Blockly.FieldDropdown(Blockly.Msg.Peguino_AttachServo_UNIT_CHOICE), Blockly.Msg.Peguino_AttachServo_UNIT);
+
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setTooltip(Blockly.Msg.ARDUINO_SERVO_MOVE_TOOLTIP);
+    this.setTooltip(Blockly.Msg.Peguino_AttachServo_TOOLTIP);
   }
 };
 
@@ -182,7 +245,7 @@ Blockly.Blocks['peguino_actuators_servo_move'] = {
 	this.setHelpUrl(Blockly.Msg.ARDUINO_SERVO_MOVE_HELPURL);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_MOVE_INPUT1)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/servo/servomoteur.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Microservo_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(
@@ -226,7 +289,7 @@ Blockly.Blocks['peguino_actuators_servo_read_degrees'] = {
 	this.setHelpUrl(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_HELPURL);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_READ_DEGREES_INPUT1)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/servo/servomoteur.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Microservo_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(
@@ -265,7 +328,7 @@ Blockly.Blocks['peguino_actuators_servo_attached'] = {
 	this.setHelpUrl('http://www.arduino.cc/playground/ComponentLib/servo');
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_ATTACHED)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/servo/servomoteur.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Microservo_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(
@@ -305,7 +368,7 @@ Blockly.Blocks['peguino_actuators_servo_detach'] = {
 	this.setInputsInline(false);
     this.appendDummyInput("")
         .appendField(Blockly.Msg.ARDUINO_SERVO_DETACH)
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/servo/servomoteur.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Microservo_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(
@@ -345,7 +408,7 @@ Blockly.Blocks['peguino_actuators_servo_rot_continue'] = {
     this.setHelpUrl(Blockly.Msg.ARDUINO_SERVO_ROT_CONTINUE_HELPURL);
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.ARDUINO_SERVO_ROT_CONTINUE_TEXT)
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/servo/servomoteur_rot_continue.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Microservo_Brick_360_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(
@@ -391,7 +454,7 @@ Blockly.Blocks['peguino_actuators_servo_rot_continue_param'] = {
     this.setHelpUrl(Blockly.Msg.ARDUINO_SERVO_ROT_CONTINUE_HELPURL);
 	this.appendDummyInput()
 		.appendField(Blockly.Msg.ARDUINO_SERVO_ROT_CONTINUE_TEXT)
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/servo/servomoteur_rot_continue.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_Microservo_Brick_360_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput("")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(
@@ -440,7 +503,7 @@ Blockly.Blocks['peguino_actuators_u8g_draw_string'] = {
  init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.lp2i_u8g_draw_string)
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/display-oled-128x64-i2c/display-oled-128x64-i2c.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_OLED_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendValueInput("Text")
 		.setCheck('String')
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -466,7 +529,7 @@ Blockly.Blocks['peguino_actuators_u8g_draw_4strings'] = {
  init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.lp2i_u8g_draw_4strings)
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/display-oled-128x64-i2c/display-oled-128x64-i2c.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
+		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_OLED_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));
     this.appendDummyInput()
         .appendField(Blockly.Msg.lp2i_u8g_draw_4strings_texts_to_display);		
     this.appendValueInput("Text_line1")
@@ -497,7 +560,7 @@ Blockly.Blocks['peguino_actuators_u8g_print'] = {
  init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.lp2i_u8g_print)
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/display-oled-128x64-i2c/display-oled-128x64-i2c.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));		
+		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_OLED_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));		
 	this.appendValueInput("N")
 		.setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -523,7 +586,7 @@ Blockly.Blocks['peguino_actuators_u8g_4draw_print'] = {
  init: function() {
     this.appendDummyInput()
         .appendField(Blockly.Msg.lp2i_u8g_4draw_print)
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/display-oled-128x64-i2c/display-oled-128x64-i2c.jpg', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));		
+		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly + 'blocks/peguino/Peguino_OLED_Brick_01.png', Blockly.Arduino.imageSize, Blockly.Arduino.imageSize));		
     this.appendDummyInput()
         .appendField(Blockly.Msg.lp2i_u8g_4draw_print_to_display);			
     this.appendValueInput("Text_line1")
